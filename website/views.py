@@ -1,0 +1,13 @@
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask_login import login_user, logout_user, login_required, current_user
+from . import db
+from .models import User, Task
+from datetime import datetime
+import json
+
+views = Blueprint('views', __name__)
+
+@views.route('/home')
+@login_required
+def home():
+    return render_template('home.html')

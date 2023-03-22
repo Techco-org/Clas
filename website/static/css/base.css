@@ -1,4 +1,16 @@
-.container{
-    width: 80%;
-    margin: 0 auto;
+:root{
+    --main-purple: #6936F5;
+}
+*{
+    font-family: 'Montserrat', sans-serif, 'Anybody';
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+}
+html, body{
+    width: 100%;
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
 }

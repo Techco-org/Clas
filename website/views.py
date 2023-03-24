@@ -7,7 +7,12 @@ import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/home')
+@views.route('/')
 @login_required
 def home():
     return render_template('home.html')
+
+@views.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')

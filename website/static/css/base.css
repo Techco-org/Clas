@@ -1,5 +1,6 @@
 :root{
     --main-purple: #6936F5;
+    --background: #fafafa;
 }
 *{
     font-family: 'Montserrat', sans-serif, 'Anybody';
@@ -8,9 +9,21 @@
 }
 html, body{
     width: 100%;
-    overflow-x: hidden;
 }
 body{
     margin: 0;
     padding: 0;
 }
+.box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+@media (min-width:320px){html{font-size: 10px;}}
+@media (min-width:480px){html{font-size: 13px;}}
+@media (min-width:600px){html{font-size: 13px;}}
+@media (min-width:801px){html{font-size: 15px;}}
+@media (min-width:1025px){html{font-size: 15px;}}
+@media (min-width:1281px){html{font-size: 16px;}}
+
+
+/* For mobile phone */
+@media only screen and (max-width: 768px) {}

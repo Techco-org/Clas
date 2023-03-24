@@ -1,0 +1,93 @@
+@import url(base.css);
+
+.avatar{
+    width: 13em;
+    aspect-ratio: 1/1;
+    margin-top: -11em;
+    background-color: #fafafa;
+}
+.avatar-image{
+    width: 94%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+.name{
+    margin-top: 0.7em;
+    margin-bottom: 0em;
+    font-size: 1.8em;
+    font-weight: 650;
+}
+.bio{
+    font-size: 1.2em;
+    font-weight: 450;
+    margin-top: 0;
+}
+.city-country{
+    margin-top: 0.5em;
+    font-size: 1em;
+    font-weight: 450;
+    color: #333333;
+}
+.website a{
+    font-size: 1em;
+    font-weight: 450;
+    font-size: 1;
+    text-decoration: none;
+}
+.website a:hover{
+    text-decoration: underline;
+}
+.space-none{
+    margin: 0;
+    padding: 0;
+}
+.edit-profile{
+    text-align: center;
+    font-size: 1em;
+    font-weight: 450;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    transition: 0.2s;
+    border: 0;
+}
+.edit-profile:hover{
+    background-color: #f9f9f9;
+}
+/* For mobile phone */
+@media only screen and (max-width: 991px){
+    .name{
+        margin-top: 0.7em;
+        margin-bottom: 0em;
+        font-size: 2em;
+        font-weight: 650;
+    }
+    .bio{
+        font-size: 1.4em;
+        font-weight: 450;
+        margin-top: 0;
+    }
+    .city-country{
+        margin-top: 0.7em;
+        font-size: 1em;
+        font-weight: 450;
+        color: #333333;
+    }
+    .website a{
+        font-size: 1.2em;
+        font-weight: 450;
+        font-size: 1;
+        text-decoration: none;
+    }
+    .avatar{
+        width: 15em;
+        aspect-ratio: 1/1;
+        margin: 0 auto;
+        margin-top: -7em;
+    }
+    .edit-profile{
+        font-size: 1.2em;
+    }
+    .info *{
+        text-align: center;
+    }
+}

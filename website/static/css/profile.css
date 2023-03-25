@@ -28,13 +28,17 @@
     font-weight: 450;
     color: #333333;
 }
-.website a{
+.email{
+    margin-top: 0.1em;
+}
+.website a, .email a{
+    margin-bottom: 0;
     font-size: 1em;
     font-weight: 450;
     font-size: 1;
     text-decoration: none;
 }
-.website a:hover{
+.website a:hover, .email a:hover{
     text-decoration: underline;
 }
 .space-none{
@@ -53,6 +57,9 @@
 .edit-profile:hover{
     background-color: #f9f9f9;
 }
+.modal-body label{
+    font-size: 1.2em;
+}
 /* For mobile phone */
 @media only screen and (max-width: 991px){
     .name{
@@ -68,7 +75,7 @@
     }
     .city-country{
         margin-top: 0.7em;
-        font-size: 1em;
+        font-size: 1.2em;
         font-weight: 450;
         color: #333333;
     }
@@ -89,5 +96,8 @@
     }
     .info *{
         text-align: center;
+    }
+    .modal-body label{
+        font-size: 1.4em;
     }
 }

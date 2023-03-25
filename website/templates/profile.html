@@ -31,7 +31,7 @@
                     {% endif %}
                     <div class="email"><a class="space-none text-primary" href="mailto:{{ user.email }}">{{ user.email }}</a></div>
                     {% if user.url %}
-                    <div class="website"><a class="space-none text-primary" href="{{ user.country }}">{{ user.url }}</a></div>
+                    <div class="website"><a class="space-none text-primary" href="{{ user.url }}">{{ user.url }}</a></div>
                     {% endif %}
                 </div>
             </div>
@@ -56,7 +56,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="bio" class="form-label fw-medium">Your Bio</label>
-                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea"></textarea>
+                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">
+                                    {% if user.bio %}
+                                    user.bio
+                                    {% endif %}
+                                    </textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="city" class="form-label fw-medium">City</label>

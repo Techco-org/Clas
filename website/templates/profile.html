@@ -14,10 +14,25 @@
                     <img src="https://avatars.githubusercontent.com/u/107859471?v=4" alt="" class="align-self-center avatar-image rounded-circle">
                 </div>
                 <div class="w-100 info">
-                    <div class="name"><p class="space-none">Vinh Luong The</p></div>
-                    <div class="bio"><p class="space-none">Founder of Clas.</p></div>
-                    <div class="city-country"><p class="space-none">Hai Phong City, Vietnam</p></div>
-                    <div class="website"><a class="space-none text-primary" href="https://github.com/lgthevinh">https://github.com/lgthevinh</a></div>
+                    <div class="name"><p class="space-none"> {{ user.fullname }} </p></div>
+                    {% if user.bio %}
+                    <div class="bio"><p class="space-none">{{ user.bio }}</p></div>
+                    {% endif %}
+                    {% if user.city or user.country %}
+                    <div class="city-country"><p class="space-none">
+                        {% if user.city %}
+                        {{ user.city }} city, 
+                        {% endif %}
+                        {% if user.country %}
+                        {{ user.country }}
+                        {% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                    <div class="email"><a class="space-none text-primary" href="mailto:{{ user.email }}">{{ user.email }}</a></div>
+                    {% if user.url %}
+                    <div class="website"><a class="space-none text-primary" href="{{ user.url }}">{{ user.url }}</a></div>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -28,19 +43,49 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Personal Information</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-4" id="exampleModalLabel">Personal Information</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/home/profile/edit-personal" method="POST">
+                        <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label fw-medium">Full Name</label>
+                                    <input id="name" name="name" type="text" class="form-control" value="{{ user.fullname }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bio" class="form-label fw-medium">Your Bio</label>
+                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="city" class="form-label fw-medium">City</label>
+                                    <input id="city" name="city" type="text" class="form-control"
+                                    {% if user.city %}
+                                    value="{{ user.city }}"
+                                    {% endif %}>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="country" class="form-label fw-medium">Country</label>
+                                    <input id="country" name="country" type="text" class="form-control" 
+                                    {% if user.country %}
+                                    value="{{ user.country }}"
+                                    {% endif %}>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="url" class="form-label fw-medium">Your Website or Personal URL</label>
+                                    <input id="url" name="url" type="url" class="form-control" 
+                                    {% if user.url %}
+                                    value="{{ user.url }}"
+                                    {% endif %}>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
             </div>
         </div>
     </div>

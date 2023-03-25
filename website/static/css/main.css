@@ -1,3 +1,9 @@
+@import url(base.css);
 body{
     background-color: var(--background);
+}
+@media only screen and (max-width: 768px) {
+    .search-input, .search-button{
+        font-size: 1.6em;
+    }
 }

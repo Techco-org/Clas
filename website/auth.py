@@ -9,7 +9,7 @@ auth = Blueprint('auth', __name__)
 def index():
     return render_template('index.html')
 
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET','POST'])
 def login():
     if login_remembered():
         return redirect(url_for('views.home'))
@@ -24,7 +24,6 @@ def login():
                     login_user(user, remember=False)
                 else:
                     login_user(user, remember=True)
-                flash('Log in successfully!', category='success')
                 return redirect(url_for('views.home'))
             else: 
                 flash('Incorrect password, try again', category='error')
@@ -42,15 +41,15 @@ def logout():
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form.get('username')
+        fullname = request.form.get('fullname')
         email = request.form.get('email')
         password = request.form.get('password')
         reconfirm = request.form.get('reconfirm')
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists', category='error')
-        elif len(username) < 4:
-            flash('Username is too short', category='error')
+        elif len(fullname) < 4:
+            flash('Full name is too short', category='error')
         elif len(email) < 4:
             flash('Invalid email', category='error')
         elif len(password) < 8:
@@ -58,7 +57,7 @@ def signup():
         elif password != reconfirm:
             flash('Password don\'t match', category='error')
         else:
-            new_user = User(username=username, email=email, password=password)
+            new_user = User(fullname=fullname, email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
             flash('Account created', category='success')

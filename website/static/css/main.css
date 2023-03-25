@@ -1,3 +1,4 @@
+@import url(base.css);
 body{
     background-color: var(--background);
 }

@@ -56,10 +56,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="bio" class="form-label fw-medium">Your Bio</label>
-                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">
-                                    {% if user.bio %}
-                                    user.bio
-                                    {% endif %}
+                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}user.bio{% endif %}
                                     </textarea>
                                 </div>
                                 <div class="mb-3">

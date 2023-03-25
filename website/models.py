@@ -3,12 +3,19 @@ from sqlalchemy.sql import func
 from . import db
 
 class User(db.Model, UserMixin):
+    # Authentication Data
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     tasks = db.relationship('Task')
+
+    #Personal Details
+    fullname = db.Column(db.String(150), nullable=False)
+    city = db.Column(db.String(50))
+    country = db.Column(db.String(50))
+    bio = db.Column(db.String(100))
+    url = db.Column(db.String(150))
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)

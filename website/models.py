@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     tasks = db.relationship('Task')
+    images = db.relationship('Img')
 
     #Personal Details
     fullname = db.Column(db.String(150), nullable=False)
@@ -23,4 +24,11 @@ class Task(db.Model):
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
     deadline_date = db.Column(db.DateTime(timezone=True), default=None)
     state = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Img(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img = db.Column(db.Text, unique=True, nullable=False)
+    name = db.Column(db.Text, nullable=False)
+    mimetype = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

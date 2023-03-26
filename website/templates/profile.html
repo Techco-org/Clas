@@ -7,14 +7,14 @@
     <div class="d-flex flex-column w-100">
         <section class="personal-info rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
             <div class="banner w-100" style="height: 23em;">
-                <img class="object-fit-cover rounded-top-3" src="{{ url_for('static', filename='images/banner-placeholder.jpg' ) }}" alt="" style="width: 100%; height: 100%;">
+                <img class="object-fit-cover rounded-top-3" src="https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-ppt-minimalistic-geometric-background-backgroundppt-template-backgroundsimplecool-image_54790.jpg" alt="" style="width: 100%; height: 100%;">
             </div>
             <div class="d-flex flex-column bg-white rounded-bottom-3 mx-lg-5 mx-3 mx-sm-3 py-3">
                 <div class="d-flex rounded-circle justify-content-center avatar box-shadow">
-                    <img src="https://avatars.githubusercontent.com/u/107859471?v=4" alt="" class="align-self-center avatar-image rounded-circle">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" class="align-self-center avatar-image rounded-circle">
                 </div>
                 <div class="w-100 info">
-                    <div class="name"><p class="space-none"> {{ user.fullname }} </p></div>
+                    <div class="name"><p class="space-none">{{ user.fullname }}</p></div>
                     {% if user.bio %}
                     <div class="bio"><p class="space-none">{{ user.bio }}</p></div>
                     {% endif %}

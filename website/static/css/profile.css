@@ -1,5 +1,14 @@
 @import url(base.css);
 
+.edit-media{
+    position: relative;
+    margin-top: -21em;
+    margin-left: 76em;
+    width: 3em;
+    height: 3em;
+    border: none;
+    background-color: #FFFFFF;
+}
 .avatar{
     width: 13em;
     aspect-ratio: 1/1;
@@ -54,7 +63,7 @@
     transition: 0.2s;
     border: 0;
 }
-.edit-profile:hover{
+.edit-profile:hover, .edit-media:hover{
     background-color: #f9f9f9;
 }
 .modal-body label{

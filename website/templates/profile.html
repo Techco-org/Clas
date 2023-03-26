@@ -7,11 +7,12 @@
     <div class="d-flex flex-column w-100">
         <section class="personal-info rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
             <div class="banner w-100" style="height: 23em;">
-                <img class="object-fit-cover rounded-top-3" src="https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-ppt-minimalistic-geometric-background-backgroundppt-template-backgroundsimplecool-image_54790.jpg" alt="" style="width: 100%; height: 100%;">
+                <img src="/home/{{user.id}}_background" onerror="this.onerror=null; this.src='https://media.istockphoto.com/id/1133363749/photo/white-canvas-texture.jpg?b=1&s=170667a&w=0&k=20&c=JvXOFDmN3ACSBnWMQPJfwebOw4y5vTv48OAOvIXu3S4='" alt="" class="object-fit-cover rounded-top-3" style="width: 100%; height: 100%;">
+                <button class="d-flex box-shadow edit-media rounded-circle"><i class="d-block bi bi-pencil-fill mx-auto fs-4 text-primary align-self-center" data-bs-toggle="modal" data-bs-target="#mediaModal"></i></button>
             </div>
             <div class="d-flex flex-column bg-white rounded-bottom-3 mx-lg-5 mx-3 mx-sm-3 py-3">
                 <div class="d-flex rounded-circle justify-content-center avatar box-shadow">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" class="align-self-center avatar-image rounded-circle">
+                    <img src="/home/{{user.id}}_avatar" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'" class="align-self-center avatar-image rounded-circle">
                 </div>
                 <div class="w-100 info">
                     <div class="name"><p class="space-none">{{ user.fullname }}</p></div>
@@ -36,19 +37,19 @@
                 </div>
             </div>
         </section>
-        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 my-2 box-shadow edit-profile text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 my-2 box-shadow edit-profile text-primary" data-bs-toggle="modal" data-bs-target="#personalModal">
             <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit Profile
         </button>
         
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="personalModal" tabindex="-1" aria-labelledby="personalModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-4" id="exampleModalLabel">Personal Information</h1>
+                        <h1 class="modal-title fs-4" id="personalModalLabel">Personal Information</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="/home/profile/edit-personal" method="POST">
+                    <form action="/home/profile/edit-personal-data" method="POST">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-medium">Full Name</label>
@@ -80,7 +81,6 @@
                                 {% endif %}>
                             </div>
                         </div>
-                        <input type="file" id="img" name="img" accept="image/*">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -90,4 +90,32 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="mediaModalLabel">Image Profile and Background</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/home/profile/upload-personal-image" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="avatar-image-input" class="form-label fw-medium">Profile Image</label>
+                            <input id="avatar-image-input" name="avatar-image-input" type="file" class="form-control" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="background-image-input" class="form-label fw-medium">Background Image</label>
+                            <input id="background-image-input" name="background-image-input" type="file" class="form-control" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

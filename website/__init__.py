@@ -12,6 +12,7 @@ def create_app():
     
     from .views import views
     from .auth import auth
+    from .data import data
 
     db.init_app(app)
     with app.app_context():
@@ -20,6 +21,7 @@ def create_app():
     from .models import User
 
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(data, url_prefix='/data')
     app.register_blueprint(views, url_prefix='/home')
 
     login_manager = LoginManager()

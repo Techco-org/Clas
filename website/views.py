@@ -1,9 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify, Response
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import Blueprint, render_template, request, redirect, url_for, Response
+from flask_login import login_required, current_user
 from . import db
-from .models import User, Task, Img
-from datetime import datetime
-import json
+from .models import Task, Img
 
 views = Blueprint('views', __name__)
 

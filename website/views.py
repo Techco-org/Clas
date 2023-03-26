@@ -15,7 +15,7 @@ def home():
 def profile():
     return render_template('profile.html', user=current_user)
 
-@views.route('/profile/edit-personal', methods=['GET', 'POST'])
+@views.route('/profile/edit-personal-data', methods=['GET', 'POST'])
 @login_required
 def edit_personal_data():
     if request.method == 'POST':

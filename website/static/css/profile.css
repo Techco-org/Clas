@@ -1,13 +1,16 @@
 @import url(base.css);
 
 .edit-media{
-    position: relative;
-    margin-top: -21em;
-    margin-left: 76em;
+    position: absolute;
+    top: 1em;
+    right: 1em;
     width: 3em;
     height: 3em;
     border: none;
     background-color: #FFFFFF;
+}
+.edit-media i{
+    font-size: 1.5em;
 }
 .avatar{
     width: 13em;
@@ -108,5 +111,12 @@
     }
     .modal-body label{
         font-size: 1.4em;
+    }
+    .edit-media{
+        width: 4em;
+        height: 4em;
+    }
+    .edit-media i{
+        font-size: 1.8em;
     }
 }

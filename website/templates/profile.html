@@ -50,35 +50,35 @@
                     </div>
                     <form action="/home/profile/edit-personal" method="POST">
                         <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label fw-medium">Full Name</label>
-                                    <input id="name" name="name" type="text" class="form-control" value="{{ user.fullname }}" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="bio" class="form-label fw-medium">Your Bio</label>
-                                    <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="city" class="form-label fw-medium">City</label>
-                                    <input id="city" name="city" type="text" class="form-control"
-                                    {% if user.city %}
-                                    value="{{ user.city }}"
-                                    {% endif %}>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="country" class="form-label fw-medium">Country</label>
-                                    <input id="country" name="country" type="text" class="form-control" 
-                                    {% if user.country %}
-                                    value="{{ user.country }}"
-                                    {% endif %}>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="url" class="form-label fw-medium">Your Website or Personal URL</label>
-                                    <input id="url" name="url" type="url" class="form-control" 
-                                    {% if user.url %}
-                                    value="{{ user.url }}"
-                                    {% endif %}>
-                                </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-medium">Full Name</label>
+                                <input id="name" name="name" type="text" class="form-control" value="{{ user.fullname }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bio" class="form-label fw-medium">Your Bio</label>
+                                <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label fw-medium">City</label>
+                                <input id="city" name="city" type="text" class="form-control"
+                                {% if user.city %}
+                                value="{{ user.city }}"
+                                {% endif %}>
+                            </div>
+                            <div class="mb-3">
+                                <label for="country" class="form-label fw-medium">Country</label>
+                                <input id="country" name="country" type="text" class="form-control" 
+                                {% if user.country %}
+                                value="{{ user.country }}"
+                                {% endif %}>
+                            </div>
+                            <div class="mb-3">
+                                <label for="url" class="form-label fw-medium">Your Website or Personal URL</label>
+                                <input id="url" name="url" type="url" class="form-control" 
+                                {% if user.url %}
+                                value="{{ user.url }}"
+                                {% endif %}>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

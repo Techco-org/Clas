@@ -1,3 +1,5 @@
+@import url(base.css);
+
 .hero .carousel-item{
     height: 90vh;
     min-height: 300px;

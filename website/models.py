@@ -3,6 +3,8 @@ from sqlalchemy.sql import func
 from . import db
 
 class User(db.Model, UserMixin):
+    __searchable__ = ['fullname', 'id', 'email']
+
     # Authentication Data
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
@@ -17,6 +19,10 @@ class User(db.Model, UserMixin):
     country = db.Column(db.String(50))
     bio = db.Column(db.String(100))
     url = db.Column(db.String(150))
+
+    def __repr__(self):
+        return '<User:{}>'.format(self.email)
+
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)

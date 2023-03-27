@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, Response
 from flask_login import login_required, current_user
 from . import db
-from .models import Task, Img
+from .models import User, Task, Img
 
 views = Blueprint('views', __name__)
 
@@ -73,3 +73,16 @@ def get_background_image(user_id):
         return 'No image with this id', 404
     
     return Response(img.img, mimetype=img.mimetype)
+
+@views.route('/search', methods=['POST', 'GET'])
+@login_required
+def search():
+    if request.method == 'POST':
+        search_query = request.form.get('search')
+    return redirect(url_for('views.search_result', query=search_query))
+
+@views.route('/search-result/<query>')
+def search_result(query):
+    results = User.query.msearch(query, limit=5).all()
+    print(results)
+    return render_template('search-result.html')

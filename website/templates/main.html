@@ -13,8 +13,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="search-form d-flex mx-2 my-2" role="search">
-                    <input class="search-input form-control me-2" type="search" placeholder="Search for users" aria-label="Search">
+                <form class="search-form d-flex mx-2 my-2" role="search" method="POST" action="{{ url_for('views.search') }}">
+                    <input class="search-input form-control me-2" name="search" type="search" placeholder="Search for users" aria-label="Search" required>
                     <button class="search-button btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

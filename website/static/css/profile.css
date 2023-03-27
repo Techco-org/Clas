@@ -66,7 +66,10 @@
     background-color: #f9f9f9;
 }
 .modal-body label{
-    font-size: 1.2em;
+    font-size: 1.1em;
+}
+.modal-body input, .modal-body textarea{
+    font-size: 1em;
 }
 /* For mobile phone */
 @media only screen and (max-width: 991px){
@@ -114,5 +117,11 @@
     }
     .edit-media i{
         font-size: 1.8em;
+    }
+    .modal-body label{
+        font-size: 1.3em;
+    }
+    .modal-body input, .modal-body textarea{
+        font-size: 1.2em;
     }
 }

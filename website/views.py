@@ -83,6 +83,7 @@ def search():
 
 @views.route('/search-result/<query>')
 def search_result(query):
-    results = User.query.msearch(query, limit=5).all()
-    print(results)
+    results = User.query.msearch(query).all()
+    for user in results:
+        print(user)
     return render_template('search-result.html')

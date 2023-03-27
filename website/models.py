@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     url = db.Column(db.String(150))
 
     def __repr__(self):
-        return '<User:{}>'.format(self.email)
+        return str(self.id)
 
 
 class Task(db.Model):

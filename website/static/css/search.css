@@ -18,7 +18,13 @@
 .user-fullname:hover{
     text-decoration: underline;
 }
+.user-city-country{
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 1em;
+}
 .user-email{
+    font-size: 1em;
     margin-top: 0.2em;
 }
 @media only screen and (max-width: 991px){
@@ -28,6 +34,12 @@
     }
     .user-fullname{
         text-decoration: none;
-        font-size: 1.3em;
+        font-size: 1.4em;
+    }
+    .user-city-country{
+        font-size: 1.2em;
+    }
+    .user-email{
+        font-size: 1.2em;
     }
 }

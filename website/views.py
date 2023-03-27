@@ -85,5 +85,5 @@ def search():
 def search_result(query):
     results = User.query.msearch(query).all()
     for user in results:
-        print(user)
+        print(user.id)
     return render_template('search-result.html')

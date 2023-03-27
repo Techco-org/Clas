@@ -24,6 +24,10 @@ body{
 @media (min-width:1025px){html{font-size: 15px;}}
 @media (min-width:1281px){html{font-size: 16px;}}
 
+.space-none{
+    margin: 0;
+    padding: 0;
+}
 
 /* For mobile phone */
 @media only screen and (max-width: 768px) {

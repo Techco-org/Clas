@@ -53,10 +53,6 @@
 .website a:hover, .email a:hover{
     text-decoration: underline;
 }
-.space-none{
-    margin: 0;
-    padding: 0;
-}
 .edit-profile{
     text-align: center;
     font-size: 1em;

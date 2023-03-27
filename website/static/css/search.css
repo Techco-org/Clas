@@ -1,1 +1,33 @@
 @import url(base.css);
+
+.user-card{
+    height: fit-content;
+    background-color: #FFFFFF;
+    margin-bottom: 1.2em;
+}
+.user-avatar{
+    height: 5em;
+    width: auto;
+    aspect-ratio: 1/1;
+    margin-right: 1.2em;
+}
+.user-fullname{
+    text-decoration: none;
+    font-size: 1.1em;
+}
+.user-fullname:hover{
+    text-decoration: underline;
+}
+.user-email{
+    margin-top: 0.2em;
+}
+@media only screen and (max-width: 991px){
+    .user-avatar{
+        height: 5.2em;
+        margin-right: 1em;
+    }
+    .user-fullname{
+        text-decoration: none;
+        font-size: 1.3em;
+    }
+}

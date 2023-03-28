@@ -53,7 +53,7 @@
 .website a:hover, .email a:hover{
     text-decoration: underline;
 }
-.edit-profile{
+.edit{
     text-align: center;
     font-size: 1em;
     font-weight: 450;
@@ -62,7 +62,7 @@
     transition: 0.2s;
     border: 0;
 }
-.edit-profile:hover, .edit-media:hover{
+.edit:hover, .edit-media:hover{
     background-color: #f9f9f9;
 }
 .section-label{
@@ -72,7 +72,7 @@
 .modal-body label{
     font-size: 1.1em;
 }
-.modal-body input, .modal-body textarea{
+.modal-body input, .modal-body textarea, .display-fs{
     font-size: 1em;
 }
 /* For mobile phone */
@@ -125,7 +125,7 @@
     .modal-body label{
         font-size: 1.3em;
     }
-    .modal-body input, .modal-body textarea{
+    .modal-body input, .modal-body textarea, .display-fs{
         font-size: 1.2em;
     }
     .section-label{

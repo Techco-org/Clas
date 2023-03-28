@@ -2,8 +2,14 @@
 body{
     background-color: var(--background);
 }
+.view-section{
+    margin-top: 100px;
+}
 @media only screen and (max-width: 768px) {
     .search-input, .search-button{
         font-size: 1.6em;
+    }
+    .view-section{
+        margin-top: 75px;
     }
 }

@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, Response
 from flask_login import login_required, current_user
+
+from datetime import datetime
+
 from . import db
-from .models import User, Task, Img
+from .models import User, Task, Img, Grade
 
 views = Blueprint('views', __name__)
 
@@ -15,9 +18,9 @@ def home():
 def profile():
     return render_template('profile.html', user=current_user)
 
-@views.route('/profile/edit-personal-data', methods=['GET', 'POST'])
+@views.route('/profile/edit-profile', methods=['GET', 'POST'])
 @login_required
-def edit_personal_data():
+def edit_profile():
     if request.method == 'POST':
         current_user.fullname = request.form.get('name')
         current_user.bio = request.form.get('bio')
@@ -28,6 +31,40 @@ def edit_personal_data():
         db.session.commit()
         return redirect(url_for('views.profile'))
     
+@views.route('/profile/edit-basic-info', methods=['GET', 'POST'])
+@login_required
+def edit_basic_info():
+    if request.method == 'POST':
+        current_user.home_address = request.form.get('home-address')
+        date_of_birth = request.form.get('date-of-birth')
+        if date_of_birth:
+            current_user.date_of_birth =  datetime.strptime(str(date_of_birth), '%Y-%m-%d')
+        current_user.current_grade = request.form.get('current_grade')
+        current_user.highschool = request.form.get('highschool')
+
+        db.session.commit()
+        return redirect(url_for('views.profile'))
+    
+@views.route('/profile/add-grading', methods=['GET', 'POST'])
+@login_required
+def add_grading():
+    if request.method == 'POST':
+        subject = request.form.get('subject')
+        overall = request.form.get('overall')
+        grade = request.form.get('grade')
+        new_grade = Grade(subject=subject, overall=overall, grade=grade, user_id=current_user.id)
+        db.session.add(new_grade)
+        db.session.commit()
+        return redirect(url_for('views.profile'))
+    
+@views.route('/delete-grade/<grade_id>')
+@login_required
+def delete_grade(grade_id):
+    grade = Grade.query.filter_by(id=grade_id).first()
+    db.session.delete(grade)
+    db.session.commit()
+    return redirect(url_for('views.profile'))
+
 @views.route('/profile/upload-personal-image', methods=['GET', 'POST'])
 @login_required
 def edit_personal_image():

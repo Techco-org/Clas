@@ -5,21 +5,27 @@
 {% endblock %}
 {% block section %}
     <div class="d-flex position-relative flex-column w-100">
+        {% if not results %}
+            <div class="d-flex position-relative justify-content-center w-100" style="height: 80vh;">
+                <img src="{{ url_for('static', filename='images/no-results.png' ) }}" alt="" class="rounded-3 object-fit-cover" style="height: 70%;">
+            </div>
+        {% else %}
         {% for user in results %}
-            <div class="d-flex position-relative flex-row align-content-center w-100 user-card box-shadow rounded-3 py-2 px-4 px-lg-4 px-md-3 px-sm-2">
-                <div class="d-flex user-avatar box-shadow rounded-circle justify-content-center"><img src="/data/{{user.id}}_avatar" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'" alt="" class="align-self-center object-fit-cover rounded-circle" style="width: 100%; height: 100%;"></div>
-                <div class="d-flex flex-column user-data h-100">
-                    <div><a href="{{ url_for('views.user' ) }}" class="user-fullname text-black fw-medium">{{user.fullname}}</a></div>
-                    <div>
-                        <p class="space-none user-city-country">
-                        {% if user.city and user.country %}{{user.city}} · {{user.country}}
-                        {% elif user.city and not user.country %}{{user.city}}
-                        {% elif not user.city and user.country %}{{user.country}}{% endif %}
-                        </p>
-                        <p class="space-none user-email">{{user.email}}</p>
-                    </div>
+        <div class="d-flex position-relative flex-row align-content-center w-100 user-card box-shadow rounded-3 py-2 px-4 px-lg-4 px-md-3 px-sm-2">
+            <div class="d-flex user-avatar box-shadow rounded-circle justify-content-center"><img src="/data/{{user.id}}_avatar" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'" alt="" class="align-self-center object-fit-cover rounded-circle" style="width: 100%; height: 100%;"></div>
+            <div class="d-flex flex-column user-data h-100">
+                <div><a href="/home/user/{{user.id}}" class="user-fullname text-black fw-medium">{{user.fullname}}</a></div>
+                <div>
+                    <p class="space-none user-city-country">
+                    {% if user.city and user.country %}{{user.city}} · {{user.country}}
+                    {% elif user.city and not user.country %}{{user.city}}
+                    {% elif not user.city and user.country %}{{user.country}}{% endif %}
+                    </p>
+                    <p class="space-none user-email">{{user.email}}</p>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

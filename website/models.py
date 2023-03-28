@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 from . import db
+import datetime
 
 class User(db.Model, UserMixin):
     __searchable__ = ['fullname', 'id', 'email']
@@ -20,6 +21,13 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(100))
     url = db.Column(db.String(150))
 
+    #Basic info
+    home_address = db.Column(db.String(150))
+    day_birth = db.Column(db.Integer, default=datetime.datetime.now().day)
+    month_birth = db.Column(db.Integer, default=datetime.datetime.now().month)
+    year_birth = db.Column(db.Integer, default=datetime.datetime.now().year)
+
+
     def __repr__(self):
         return '<User_ID:{}>'.format(self.id)
 
@@ -34,7 +42,7 @@ class Task(db.Model):
 
 class Img(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    img = db.Column(db.Text, unique=True, nullable=False)
+    img = db.Column(db.Text, unique=False, nullable=False)
     name = db.Column(db.Text, nullable=False)
     mimetype = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

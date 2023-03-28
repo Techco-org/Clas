@@ -65,6 +65,10 @@
 .edit-profile:hover, .edit-media:hover{
     background-color: #f9f9f9;
 }
+.section-label{
+    font-size: 1.3em;
+    font-weight: 600;
+}
 .modal-body label{
     font-size: 1.1em;
 }
@@ -124,4 +128,8 @@
     .modal-body input, .modal-body textarea{
         font-size: 1.2em;
     }
+    .section-label{
+        font-size: 1.5em;
+    }
+    
 }

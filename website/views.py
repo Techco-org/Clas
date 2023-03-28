@@ -75,7 +75,6 @@ def get_background_image(user_id):
     return Response(img.img, mimetype=img.mimetype)
 
 @views.route('/search', methods=['POST', 'GET'])
-@login_required
 def search():
     if request.method == 'POST':
         search_query = request.form.get('search')
@@ -88,6 +87,9 @@ def search_result(query):
         print(user.fullname)
     return render_template('search.html', results=results)
 
-@views.route('/user', methods=['POST', 'GET'])
-def user():
-    return redirect(url_for('views.profile'))
+@views.route('/user/<user_id>')
+def user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        return 'No user with this id', 404
+    return render_template('user.html', user=user) 

@@ -11,8 +11,8 @@ def index():
 
 @auth.route('/login', methods=['GET','POST'])
 def login():
-    if login_remembered():
-        return redirect(url_for('views.home'))
+    # if login_remembered():
+    #     return redirect(url_for('views.home'))
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')

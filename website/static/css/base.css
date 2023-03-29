@@ -20,22 +20,44 @@ body{
 .delete-button:hover{
     color: #df4759;
 }
+.display-fs-sm{
+    font-size: 0.9em;
+}
+.display-fs{
+    font-size: 1em;
+}
+.display-sm-fs{
+    font-size: 1.1em;
+}
+.display-ic{
+    font-size: 2em;
+}
 @media (min-width:320px){html{font-size: 10px;}}
 @media (min-width:480px){html{font-size: 13px;}}
 @media (min-width:600px){html{font-size: 13px;}}
 @media (min-width:801px){html{font-size: 15px;}}
 @media (min-width:1025px){html{font-size: 15px;}}
 @media (min-width:1281px){html{font-size: 16px;}}
-
 .space-none{
     margin: 0;
     padding: 0;
 }
-
 /* For mobile phone */
 @media only screen and (max-width: 768px) {
     .nav-link, .dropdown-item{
         margin-top: 0.4em;
         font-size: 1.6em;
+    }
+    .display-fs-sm{
+        font-size: 1.1em;
+    }
+    .display-fs{
+        font-size: 1.2em;
+    }
+    .display-sm-fs{
+        font-size: 1.3em;
+    }
+    .display-ic{
+        font-size: 1.8em;
     }
 }

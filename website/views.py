@@ -18,6 +18,11 @@ def home():
 def profile():
     return render_template('profile.html', user=current_user)
 
+@views.route('/tasks')
+@login_required
+def tasks():
+    return render_template('tasks.html')
+
 @views.route('/profile/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -85,7 +90,6 @@ def add_licer():
         db.session.add(new_licer)
         db.session.commit()
         return redirect(url_for('views.profile'))
-
 
 @views.route('/license-certification/delete/<licer_id>')
 @login_required

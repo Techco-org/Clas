@@ -19,10 +19,10 @@
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/home/profile">Profile</a>
+                        <a class="nav-link active text-white" aria-current="page" href="{{ url_for('views.profile' ) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/home/tasks">Tasks</a>
+                        <a class="nav-link text-white" href="{{ url_for('views.tasks' ) }}">Tasks</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +40,7 @@
             </div>
         </div>
     </nav>
-    <section class="container-lg view-section" style="width: 100%; height: fit-content;">
+    <section class="container-lg view-section" style="width: 100%; height: fit-content; ">
         {% block section %}           
         {% endblock %}
     </section>
@@ -54,7 +54,6 @@
             </a>
             <span class="mb-3 mb-md-0 text-muted display-fs">&copy; 2023 Team Techco</span>
           </div>
-      
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3 mx-1"><a class="text-muted" href="https://github.com/Techco-org"><i class="bi bi-github display-ic"></i></a></li>
             <li class="ms-3 mx-1"><a class="text-muted" href="https://www.facebook.com/vinh.luongthe.14811"><i class="bi bi-facebook display-ic"></i></a></li>

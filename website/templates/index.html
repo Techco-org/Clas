@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css' )}}">
 {% endblock %}
 {% block body %}
-<nav class="navbar navbar-expand-lg" style="background-color: #6936F5">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #6936F5">
   <div class="container-lg">
     <a class="navbar-brand" href="#">
       <img src="{{ url_for('static', filename='images/logo-no-background.png' )}}" alt="" width="120">
@@ -13,17 +13,24 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="search-form d-flex mx-2 my-2" role="search" method="POST" action="{{ url_for('views.search') }}">
+        <input class="search-input form-control me-2" name="search" type="search" placeholder="Search for users" aria-label="Search" required>
+        <button class="search-button btn btn-success" type="submit">Search</button>
+      </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white fw-medium mx-1" href="/login">Login</a>
+          <a class="nav-link text-white display-md-fs mx-1" href="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-medium mx-1" href="/signup">Sign up</a>
+          <a class="nav-link text-white display-md-fs mx-1" href="/signup">Sign up</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<section class="container-lg view-section" style="width: 100%; height: fit-content; min-height: 80vh;">
+
+</section>
 {% endblock %}
 {% block footer %}
 <div class="container">

@@ -1,9 +1,11 @@
 {% extends 'main.html' %}
 {% block meta %}
     <title>Clas | Tasks</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css' ) }}">
 {% endblock %}
 {% block section %}
     <div class="d-flex flex-column w-100">
+        <section class="rounded-3 bg-white box-shadow" style="height: 300px; width: 100%;">
+        </section>
     </div>
 {% endblock %}

@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     tasks = db.relationship('Task')
     images = db.relationship('Img')
     grades = db.relationship('Grade')
+    licer = db.relationship('Licer')
 
     #Personal Details
     fullname = db.Column(db.String(150), nullable=False)
@@ -30,8 +31,6 @@ class User(db.Model, UserMixin):
     current_grade = db.Column(db.Integer)
     highschool = db.Column(db.String(150))
 
-    #Account type(False: Student, True: Recruiter)
-    account_type = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return '<User_ID:{}>'.format(self.id)
@@ -39,7 +38,7 @@ class User(db.Model, UserMixin):
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
+    data = db.Column(db.String(10000), nullable=False)
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
     deadline_date = db.Column(db.DateTime(timezone=True), default=None)
     state = db.Column(db.Boolean, default=False)
@@ -50,6 +49,16 @@ class Grade(db.Model):
     subject = db.Column(db.String(50))
     overall = db.Column(db.Float)
     grade = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Licer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    licer_name = db.Column(db.String(150), nullable=False)
+    organization = db.Column(db.String(150), nullable=False)
+    issue_date = db.Column(db.DateTime(timezone=True), nullable=False)
+    expiration_date = db.Column(db.DateTime(timezone=True), default=None)
+    credential_id = db.Column(db.String(100))
+    credential_url = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Img(db.Model):

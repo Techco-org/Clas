@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from datetime import datetime
 
 from . import db
-from .models import User, Task, Img, Grade
+from .models import User, Task, Img, Grade, Licer
 
 views = Blueprint('views', __name__)
 
@@ -44,8 +44,9 @@ def edit_basic_info():
 
         db.session.commit()
         return redirect(url_for('views.profile'))
-    
-@views.route('/profile/add-grading', methods=['GET', 'POST'])
+
+@views.route('/profile/grade/new', methods=['GET', 'POST'])
+@login_required
 @login_required
 def add_grading():
     if request.method == 'POST':
@@ -56,12 +57,41 @@ def add_grading():
         db.session.add(new_grade)
         db.session.commit()
         return redirect(url_for('views.profile'))
-    
-@views.route('/delete-grade/<grade_id>')
+
+@views.route('/grade/delete/<grade_id>')
 @login_required
 def delete_grade(grade_id):
     grade = Grade.query.filter_by(id=grade_id).first()
     db.session.delete(grade)
+    db.session.commit()
+    return redirect(url_for('views.profile'))
+ 
+@views.route('/license-certification/new', methods=['GET', 'POST'])
+@login_required
+def add_licer():
+    if request.method == 'POST':
+        licer_name = request.form.get('licer-name')
+        organization = request.form.get('organization')
+        issue_date = datetime.strptime(str(request.form.get('issue-date')), '%Y-%m-%d')
+        expiration_date = request.form.get('expiration-date')
+        credential_id = request.form.get('credential-id')
+        credential_url = request.form.get('credential-url')
+        if expiration_date:
+            expiration_date = datetime.strptime(str(expiration_date), '%Y-%m-%d')
+        else:
+            expiration_date = None
+        print(issue_date, expiration_date)
+        new_licer = Licer(licer_name=licer_name, organization=organization, issue_date=issue_date, expiration_date=expiration_date, credential_id=credential_id, credential_url=credential_url, user_id=current_user.id)
+        db.session.add(new_licer)
+        db.session.commit()
+        return redirect(url_for('views.profile'))
+
+
+@views.route('/license-certification/delete/<licer_id>')
+@login_required
+def delete_licer(licer_id):
+    licer = Licer.query.filter_by(id=licer_id).first()
+    db.session.delete(licer)
     db.session.commit()
     return redirect(url_for('views.profile'))
 

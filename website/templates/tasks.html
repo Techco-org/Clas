@@ -5,7 +5,33 @@
 {% endblock %}
 {% block section %}
     <div class="d-flex flex-column w-100">
-        <section class="rounded-3 bg-white box-shadow" style="height: 300px; width: 100%;">
+        <section style="height: fit-content; width: 100%;">
+            <div class="headline">
+                <p class="space-none tasks-headline">My Tasks</p>
+                <p class="space-none display-sm-fs fw-medium">{{current_date}}</p>
+            </div>
+            <hr class="w-100 my-3">
+            <form action="">
+                <div class="row">
+                    <div class="col-10 col-lg-11 col-sm-10">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text display-sm-fs" id="addon-wrapping">Tasks</span>
+                            <input type="text" class="form-control display-sm-fs" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-2 col-lg-1 col-sm-2">
+                        <button class="btn btn-primary d-block mx-auto display-sm-fs px-3" type="submit">Add</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="mt-3 rounded-3 bg-white box-shadow w-100" style="min-height: 65vh;">
+            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+                <div class="section-label w-100">
+                    <p class="space-none"><i class="bi bi-list-task me-2"></i></i> Task list</p>
+                    <hr class="w-100 mt-0">
+                </div>
+            </div>
         </section>
     </div>
 {% endblock %}

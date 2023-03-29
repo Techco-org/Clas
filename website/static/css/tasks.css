@@ -1,1 +1,10 @@
 @import url(base.css);
+@import url(main.css);
+.tasks-headline{
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 991px){
+
+}

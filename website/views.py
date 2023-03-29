@@ -21,7 +21,8 @@ def profile():
 @views.route('/tasks')
 @login_required
 def tasks():
-    return render_template('tasks.html')
+    current_date = datetime.now().strftime("%B %d, %Y")
+    return render_template('tasks.html', current_date=current_date)
 
 @views.route('/profile/edit-profile', methods=['GET', 'POST'])
 @login_required

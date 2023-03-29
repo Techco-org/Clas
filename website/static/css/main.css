@@ -1,9 +1,14 @@
 @import url(base.css);
+
 body{
     background-color: var(--background);
 }
 .view-section{
     margin-top: 100px;
+}
+.section-label{
+    font-size: 1.3em;
+    font-weight: 600;
 }
 @media only screen and (max-width: 768px) {
     .search-input, .search-button{
@@ -11,5 +16,8 @@ body{
     }
     .view-section{
         margin-top: 75px;
+    }
+    .section-label{
+        font-size: 1.5em;
     }
 }

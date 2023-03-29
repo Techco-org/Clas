@@ -11,7 +11,7 @@ views = Blueprint('views', __name__)
 @views.route('/')
 @login_required
 def home():
-    return render_template('home.html' , user=current_user)
+    return redirect(url_for('views.profile'))
 
 @views.route('/profile')
 @login_required

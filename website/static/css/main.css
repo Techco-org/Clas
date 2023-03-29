@@ -5,11 +5,23 @@ body{
 .view-section{
     margin-top: 100px;
 }
+.display-fs{
+    font-size: 1em;
+}
+.display-ic{
+    font-size: 2em;
+}
 @media only screen and (max-width: 768px) {
     .search-input, .search-button{
         font-size: 1.6em;
     }
     .view-section{
         margin-top: 75px;
+    }
+    .display-fs{
+        font-size: 1.2em;
+    }
+    .display-ic{
+        font-size: 1.8em;
     }
 }

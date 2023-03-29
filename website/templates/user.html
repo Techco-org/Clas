@@ -65,7 +65,7 @@
                         <p class="space-none display-fs"><span class="fw-semibold">Current grade:</span> {{user.current_grade}} </p>
                         {% endif %}
                         {% if user.highschool %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Hignschool:</span> {{user.highschool}} </p>
+                        <p class="space-none display-fs"><span class="fw-semibold">Highschool:</span> {{user.highschool}} </p>
                         {% endif %}
                     </div>
                 </div>
@@ -107,5 +107,36 @@
                 {% endif %}
                 <hr class="w-100 mt-0">
             </div>
-        </section>   
+        </section>
+
+        <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+                <div class="section-label w-100">
+                    <p class="space-none"><i class="bi bi-award-fill"></i> Licenses and certifications</p>
+                    <hr class="w-100 mt-0">
+                </div>
+                {% for licer in user.licer %}
+                <div class="row mb-3">
+                    <div class="col-2 col-lg-1 col-sm-2">
+                        <img src="https://static.vecteezy.com/system/resources/previews/005/549/770/non_2x/real-estate-or-skyscraper-or-building-simple-square-logo-symbol-icon-graphic-design-illustration-vector.jpg" class="d-block object-fit-contain mx-auto" style="width: 4em;" alt="">
+                    </div>
+                    <div class="col-10 col-lg-11 col-sm-10 position-relative">
+                        <div class="licer-name"><p class="space-none fw-medium display-sm-fs">{{licer.licer_name}}</p></div>
+                        <div class="licer-organization"><p class="space-none display-fs">{{licer.organization}}</p></div>
+                        <div class="licer-issue-expire"><p class="space-none display-fs-sm text-black-50">Issued {{licer.issue_date.strftime('%B %Y')}}
+                        {% if licer.expiration_date %}
+                        · Expires {{licer.expiration_date.strftime('%B %Y')}}
+                        {% endif %}
+                        </p></div>
+                        {% if licer.credential_id %}
+                        <div class="licer-credential-id"><p class="space-none display-fs-sm text-black-50">Credential ID {{licer.credential_id}}</p></div>
+                        {% endif %}
+                        {% if licer.credential_url %}
+                        <div class="licer-credential-url my-1"><a href="{{licer.credential_url}}" class="btn btn-outline-secondary display-fs" tabindex="-1" role="button">Show credential<i class="bi bi-box-arrow-up-right ms-2"></i></a></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
 {% endblock %}

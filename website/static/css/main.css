@@ -5,8 +5,14 @@ body{
 .view-section{
     margin-top: 100px;
 }
+.display-fs-sm{
+    font-size: 0.9em;
+}
 .display-fs{
     font-size: 1em;
+}
+.display-sm-fs{
+    font-size: 1.1em;
 }
 .display-ic{
     font-size: 2em;
@@ -18,8 +24,14 @@ body{
     .view-section{
         margin-top: 75px;
     }
+    .display-fs-sm{
+        font-size: 1.1em;
+    }
     .display-fs{
         font-size: 1.2em;
+    }
+    .display-sm-fs{
+        font-size: 1.3em;
     }
     .display-ic{
         font-size: 1.8em;

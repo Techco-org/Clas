@@ -37,9 +37,9 @@ class User(db.Model, UserMixin):
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
+    data = db.Column(db.String(200), nullable=False)
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
-    deadline_date = db.Column(db.DateTime(timezone=True), default=None)
     state = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

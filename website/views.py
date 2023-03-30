@@ -22,7 +22,41 @@ def profile():
 @login_required
 def tasks():
     current_date = datetime.now().strftime("%B %d, %Y")
-    return render_template('tasks.html', current_date=current_date)
+    return render_template('tasks.html', current_date=current_date, user=current_user)
+
+@views.route('/tasks/new', methods=['GET', 'POST'])
+@login_required
+def add_task():
+    if request.method == 'POST':
+        task_title = request.form.get('task-title')
+        task_data = request.form.get('task-data')
+
+        new_task = Task(title=task_title, data=task_data, user_id=current_user.id)
+        db.session.add(new_task)
+        db.session.commit()
+    return redirect(url_for('views.tasks'))
+
+
+@views.route('/tasks/delete/<task_id>')
+@login_required
+def delete_task(task_id):
+    task = Task.query.filter_by(id=task_id).first()
+    
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('views.tasks'))
+
+@views.route('/tasks/check/<task_id>')
+@login_required
+def check_task(task_id):
+    task = Task.query.filter_by(id=task_id).first()
+    if task.state == False:
+        task.state = True
+    else:
+        task.state = False
+
+    db.session.commit()
+    return redirect(url_for('views.tasks'))
 
 @views.route('/profile/edit-profile', methods=['GET', 'POST'])
 @login_required

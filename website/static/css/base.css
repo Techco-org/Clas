@@ -3,9 +3,12 @@
 :root{
     --main-purple: #6936F5;
     --background: #fafafa;
+    --danger: #df4759;
+    --success: 	#198754;
 }
 *{
     font-family: 'Montserrat', sans-serif, 'Anybody';
+    box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
 }
@@ -68,4 +71,27 @@ body{
     .display-ic{
         font-size: 1.8em;
     }
+}
+
+* , *:before, *:after{ 
+    box-sizing:border-box; 
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    -ms-box-sizing:border-box;
+}
+*::-webkit-scrollbar {
+    width: 8px;
+}
+*::-webkit-scrollbar-track {
+    border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb {
+    height: 46px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: #888;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }

@@ -11,12 +11,20 @@
                 <p class="space-none display-sm-fs fw-medium">{{current_date}}</p>
             </div>
             <hr class="w-100 my-3">
-            <form action="">
+            <form action="{{ url_for('views.add_task' ) }}" method="POST">
+                <div class="row mb-2">
+                    <div class="col-8 col-lg-9 col-sm-8">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text display-sm-fs" id="addon-wrapping">Title</span>
+                            <input type="text" class="form-control display-sm-fs" name="task-title" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-10 col-lg-11 col-sm-10">
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text display-sm-fs" id="addon-wrapping">Tasks</span>
-                            <input type="text" class="form-control display-sm-fs" placeholder="">
+                            <span class="input-group-text display-sm-fs" id="addon-wrapping">Task</span>
+                            <input type="text" class="form-control display-sm-fs" name="task-data" placeholder="" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-2 col-lg-1 col-sm-2">
@@ -25,12 +33,45 @@
                 </div>
             </form>
         </section>
-        <section class="mt-3 rounded-3 bg-white box-shadow w-100" style="min-height: 65vh;">
+        <section class="mt-3 rounded-3 bg-white box-shadow w-100" style="height: 65vh; overflow-y: scroll; overflow-x: hidden;">
             <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
                 <div class="section-label w-100">
                     <p class="space-none"><i class="bi bi-list-task me-2"></i></i> Task list</p>
                     <hr class="w-100 mt-0">
                 </div>
+                <div class="w-100">
+                    <p class="space-none text-bg-danger display-sm-fs fw-medium rounded-3 ps-1 mb-2"><i class="bi bi-x-lg"></i> Not complete</p>
+                </div>
+                {% for task in user.tasks %}
+                {% if task.state == False %}
+                <div class="row w-100 ms-1 mb-2 py-0 tasks-not-complete">
+                    <div class="col-12"><p class="space-none display-sm-fs fw-medium">{{task.title}}</p></div>
+                    <div class="col-10 col-lg-11 col-sm-10">
+                        <p class="space-none display-fs fw-medium">{{task.data}}
+                    </div>
+                    <div class="col-2 col-lg-1 col-sm-2">
+                        <a class="text-primary space-none display-md-fs"  href="{{ url_for('views.check_task', task_id=task.id ) }}"><i class="bi bi-circle"></i></a>
+                        <a class="text-danger space-none display-md-fs ms-1"  href="{{ url_for('views.delete_task', task_id=task.id ) }}" style="outline: none" href=""><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <div class="w-100">
+                    <p class="space-none text-bg-success display-sm-fs fw-medium rounded-3 ps-1 mb-2"><i class="bi bi-check-lg"></i> Finished </p>
+                </div>
+                {% for task in user.tasks %}
+                {% if task.state == True %}
+                <div class="row w-100 ms-1 mb-2 py-0 tasks-finished">
+                    <div class="col-12"><p class="space-none display-sm-fs fw-medium">{{task.title}}</p></div>
+                    <div class="col-10 col-lg-11 col-sm-10">
+                        <p class="space-none display-fs fw-medium">{{task.data}}</p>
+                    </div>
+                    <div class="col-2 col-lg-1 col-sm-2">
+                        <a class="text-primary space-none display-md-fs" href="{{ url_for('views.check_task', task_id=task.id ) }}"><i class="bi bi-check-lg"></i></i></a>
+                        <a class="text-danger space-none display-md-fs ms-1" style="outline: none" href="{{ url_for('views.delete_task', task_id=task.id ) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a></div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </section>
     </div>

@@ -4,7 +4,14 @@
     font-size: 1.8em;
     font-weight: 600;
 }
-
+.tasks-not-complete{
+    border-left: solid 0.2em var(--danger);
+}
+.tasks-finished{
+    border-left: solid 0.2em var(--success);
+}
 @media only screen and (max-width: 991px){
-
+    .tasks-headline{
+        font-size: 1.9em;
+    }
 }

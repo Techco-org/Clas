@@ -1,6 +1,8 @@
 @import url(base.css);
 
-.hero .carousel-item{
-    height: 90vh;
-    min-height: 300px;
+.masthead{
+    background: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url(/static/images/hero-bg.png)no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

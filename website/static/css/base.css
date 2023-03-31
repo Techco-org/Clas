@@ -2,12 +2,13 @@
 
 :root{
     --main-purple: #6936F5;
+    --semi-purple: #9d7bf9;
     --background: #fafafa;
     --danger: #df4759;
     --success: 	#198754;
 }
 *{
-    font-family: 'Montserrat', sans-serif, 'Anybody';
+    font-family: 'Noto Sans', sans-serif;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;

@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css' )}}">
 {% endblock %}
 {% block body %}
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #6936F5">
+<nav class="navbar navbar-expand-lg" style="background-color: #6936F5">
   <div class="container-lg">
     <a class="navbar-brand" href="#">
       <img src="{{ url_for('static', filename='images/logo-no-background.png' )}}" alt="" width="120">
@@ -14,7 +14,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="search-form d-flex mx-2 my-2" role="search" method="POST" action="{{ url_for('views.search') }}">
-        <input class="search-input form-control me-2" name="search" type="search" placeholder="Search for users" aria-label="Search" required>
+        <input class="search-input form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" required>
         <button class="search-button btn btn-success" type="submit">Search</button>
       </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -28,8 +28,36 @@
     </div>
   </div>
 </nav>
-<section class="container-lg view-section" style="width: 100%; height: fit-content; min-height: 80vh;">
-
+<header class="bg-black masthead" style="width: 100%; height: 75vh;">
+  <div class="container-lg d-flex flex-column h-100 justify-content-center" style="align-items: center; ">
+    <p class="h1 text-white text-center container">An education networking website for student community in Vietnam!</p>
+    <p class="h2 text-white text-center mb-2 container">We're here to support!</p>
+  </div>
+</header>
+<section class="w-100 py-4" style="height: fit-content; background-color: #2257bf;">
+    <p class="h1 text-white text-center fw-semibold">About us</p>
+    <img src="{{ url_for('static', filename='images/techco-logo-white-transparent.png' ) }}" class="d-block mx-auto my-4" width="200" alt="">
+    <div class="container row mx-auto">
+      <div class="col-12 col-lg-6 col-sm-12 mb-3">
+        <img src="{{ url_for('static', filename='images/illustrator-1.png' ) }}" class="w-100 object-fit-cover rounded-3" alt="">
+      </div>
+      <div class="col-12 col-lg-6 col-sm-12">
+        <p class="text-white" style="font-size: 1.4em; text-align: justify;">Techco is a tech solution team created by students aim to provide innovative and accessible tech innovation to schools and universities. As a student ourselves, we truly believe that student should have more access to technology no matter their background. Our mission is to provide technology solution to those looking to be more digitally literate. We are inspired by an ethic of service and are motivated to help those around us get the most out of the available technology.</p>
+        <p class="text-white" style="font-size: 1.4em; text-align: justify;">Visit us on <a class="link-info" style="text-decoration: none;" href="https://github.com/Techco-org">Github <i class="bi bi-github"></i></a></i></p>
+      </div>
+    </div>
+</section>
+<section class="w-100 py-4" style="height: fit-content; background-color: #6936F5;">
+  <img src="{{ url_for('static', filename='images/logo-no-background.png' ) }}" class="d-block mx-auto my-4" width="150" alt="">
+  <div class="container row mx-auto">
+    <div class="col-12 col-lg-6 col-sm-12">
+      <p class="text-white" style="font-size: 1.4em; text-align: justify;">Clas is our first product about an education networking  platform that provides students and universities with an easier way to connect. It allows students to create an online profile to showcase their skills and achievements, and universities to recruit potential freshmen and graduates. Clas also pack with a suite of features like task management system to support students in study and with many more to come. Clas bridges the gap between universities and students, providing higher education with a better way to connect.</p>
+      <p class="text-white" style="font-size: 1.4em; text-align: justify;">Visit us on <a class="link-info" style="text-decoration: none;" href="https://github.com/Techco-org">Github <i class="bi bi-github"></i></a></i></p>
+    </div>
+    <div class="col-12 col-lg-6 col-sm-12 mb-3">
+      <img src="{{ url_for('static', filename='images/illustrator-2.png' ) }}" class="w-100 object-fit-cover rounded-3" alt="">
+    </div>
+  </div>
 </section>
 {% endblock %}
 {% block footer %}

@@ -29,7 +29,7 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-        search.create_index(User)
+        search.create_index(User, update=True)
 
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(data, url_prefix='/data')

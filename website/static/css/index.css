@@ -1,8 +1,17 @@
 @import url(base.css);
 
 .masthead{
-    background: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url(/static/images/hero-bg.png)no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url(/static/images/hero-bg.jpg)no-repeat;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.text-purple{
+    color: var(--main-purple);
+}
+.background-2{
+    background: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url(/static/images/background-image-2.jpg)no-repeat;
+    background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
 }

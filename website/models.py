@@ -4,7 +4,7 @@ from . import db
 import datetime
 
 class User(db.Model, UserMixin):
-    __searchable__ = ['fullname', 'id', 'email']
+    __searchable__ = ['fullname', 'id']
 
     # Authentication Data
     id = db.Column(db.Integer, primary_key=True)
@@ -31,9 +31,8 @@ class User(db.Model, UserMixin):
     current_grade = db.Column(db.Integer)
     highschool = db.Column(db.String(150))
 
-
     def __repr__(self):
-        return '<User_ID:{}>'.format(self.id)
+        return '<User:{}>'.format(self.fullname)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)

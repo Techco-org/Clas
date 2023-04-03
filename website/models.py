@@ -4,7 +4,7 @@ from . import db
 import datetime
 
 class User(db.Model, UserMixin):
-    __searchable__ = ['fullname', 'id']
+    __searchable__ = ['fullname', 'id', 'email']
 
     # Authentication Data
     id = db.Column(db.Integer, primary_key=True)

@@ -1,0 +1,10 @@
+@import url(base.css);
+@import url(main.css);
+
+.setting-item{
+    background: rgba(0, 0, 0, 0);
+    transition: 0.1s;
+}
+.setting-item:hover{
+    background: rgba(0, 0, 0, 0.10);
+}

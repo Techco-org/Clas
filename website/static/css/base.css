@@ -23,6 +23,10 @@ body{
 .box-shadow{
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
+.no-border{
+    border: 0;
+    outline: 0;
+}
 .delete-button:hover{
     color: #df4759;
 }
@@ -40,6 +44,10 @@ body{
 }
 .display-ic{
     font-size: 2em;
+}
+.text-headline{
+    font-size: 1.8em;
+    font-weight: 600;
 }
 @media (min-width:320px){html{font-size: 10px;}}
 @media (min-width:480px){html{font-size: 13px;}}

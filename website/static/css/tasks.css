@@ -1,9 +1,6 @@
 @import url(base.css);
 @import url(main.css);
-.tasks-headline{
-    font-size: 1.8em;
-    font-weight: 600;
-}
+
 .tasks-not-complete{
     border-left: solid 0.2em var(--danger);
 }

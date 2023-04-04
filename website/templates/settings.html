@@ -11,7 +11,7 @@
             </div>
             <hr class="w-100">
             <div class="row">
-                <div class="col-3">
+                <div class="col-10 col-lg-3 col-sm-10">
                     <div>
                         <ul class="list-unstyled">
                             <li class="setting-item rounded-3"><a href="" class="display-sm-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-person-fill me-2"></i>Profile</li></a>
@@ -20,7 +20,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-9"></div>
+                <div class="col-9 position-relative">
+                    {% block setting %}{% endblock %}
+                </div>
             </div>
         </section>
     </div>

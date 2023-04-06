@@ -221,9 +221,7 @@ def account_setting():
 def account_type():
     if request.method == 'POST':
         account_type = request.form.get('account-type')
-        print(account_type)
         current_user.account_type = account_type
-        print(current_user.account_type)
         db.session.commit()
     return redirect(url_for('views.account_setting'))
 

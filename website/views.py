@@ -18,6 +18,8 @@ def home():
 @views.route('/profile')
 @login_required
 def profile():
+    if current_user.account_type == 2:
+        return render_template('recruiter.html', user=current_user)
     return render_template('profile.html', user=current_user)
 
 @views.route('/profile/edit/profile', methods=['GET', 'POST'])
@@ -47,6 +49,14 @@ def edit_basic_info():
         db.session.commit()
         return redirect(url_for('views.profile'))
     
+@views.route('profile/edit/about', methods=['GET', 'POST'])
+@login_required
+def edit_about():
+    if request.method == 'POST':
+        current_user.about = request.form.get('about')
+
+    db.session.commit()
+    return redirect(url_for('views.profile'))
 #Profile extentions
 @views.route('/upload/personal-image', methods=['GET', 'POST'])
 @login_required

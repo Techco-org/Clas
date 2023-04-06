@@ -17,10 +17,10 @@
     </style>
 {% endblock %}
 {% block setting %}
-    <section class="w-100">
+    <section class="w-100 mb-5">
         <p class="space-none text-headline fw-medium">Account type</p>
         <hr class="w-100">
-        <p class="space-none display-md-fs mb-1">Your account is currently a 
+        <p class="space-none display-sm-fs mb-1">Your account is currently a 
         {% if current_user.account_type == 1 %}
             student
         {% else %}
@@ -28,7 +28,7 @@
         {% endif %} account</p>
         <form class="row" method="POST" action="{{ url_for('views.account_type' ) }}">
             <div class="col-7 col-lg-4 col-sm-7">
-                <select class="form-select display-sm-fs" aria-label="Default select example" name="account-type">
+                <select class="form-select display-fs" aria-label="Default select example" name="account-type">
                     <option value="1" 
                     {% if current_user.account_type == 1 %}
                         selected
@@ -40,8 +40,15 @@
                 </select>
             </div>
             <div class="col-2">
-                <button class="btn btn-primary display-sm-fs" type="submit">Change</button>
+                <button class="btn btn-primary display-fs" type="submit">Change</button>
             </div>
         </form>
+    </section>
+    <section class="w-100">
+        <p class="space-none text-headline fw-medium text-danger">Delete account</p>
+        <hr class="w-100">
+        <p class="space-none display-sm-fs mb-1">This action cannot be recovered. Are you sure to delete account?</p>
+        <a href="{{ url_for('views.delete_account', user_id=current_user.id ) }}" class="btn btn-danger display-fs mb-1">Delete your account</a>
+        <p class="space-none display-fs-sm text-black-50">*There is no confirmation in early version*</p>
     </section>
 {% endblock %}

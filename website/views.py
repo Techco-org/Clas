@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 
 from datetime import datetime
 
@@ -216,7 +216,7 @@ def profile_setting():
 def account_setting():
     return render_template('account-setting.html')
 
-@views.route('/setting/account/account-type', methods=['POST', 'GET'])
+@views.route('/settings/account/account-type', methods=['POST', 'GET'])
 @login_required
 def account_type():
     if request.method == 'POST':
@@ -224,6 +224,15 @@ def account_type():
         current_user.account_type = account_type
         db.session.commit()
     return redirect(url_for('views.account_setting'))
+
+@views.route('/settings/account/delete-account/<user_id>')
+@login_required
+def delete_account(user_id):
+    account = User.query.filter_by(id=user_id).first()
+    db.session.delete(account)
+    db.session.commit()
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @views.route('/settings/accessibility')
 @login_required

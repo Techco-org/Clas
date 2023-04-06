@@ -13,10 +13,10 @@ class User(db.Model, UserMixin):
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
     #Relationships
-    tasks = db.relationship('Task')
-    images = db.relationship('Img')
-    grades = db.relationship('Grade')
-    licer = db.relationship('Licer')
+    tasks = db.relationship('Task', cascade='all,delete', backref='User')
+    images = db.relationship('Img', cascade='all,delete', backref='User')
+    grades = db.relationship('Grade', cascade='all,delete', backref='User')
+    licer = db.relationship('Licer', cascade='all,delete', backref='User')
 
     #Personal Details
     fullname = db.Column(db.String(150), nullable=False)
@@ -46,14 +46,14 @@ class Task(db.Model):
     data = db.Column(db.String(200), nullable=False)
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
     state = db.Column(db.Boolean, default=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
 
 class Grade(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(50))
     overall = db.Column(db.Float)
     grade = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
 
 class Licer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -63,11 +63,11 @@ class Licer(db.Model):
     expiration_date = db.Column(db.DateTime(timezone=True), default=None)
     credential_id = db.Column(db.String(100))
     credential_url = db.Column(db.String(100))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
 
 class Img(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     img = db.Column(db.Text, unique=False, nullable=False)
     name = db.Column(db.Text, nullable=False)
     mimetype = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'),nullable=False)

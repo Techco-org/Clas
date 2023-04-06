@@ -31,6 +31,9 @@ class User(db.Model, UserMixin):
     current_grade = db.Column(db.Integer)
     highschool = db.Column(db.String(150))
 
+    #Account type
+    account_type = db.Column(db.Integer, default=1)
+
     def __repr__(self):
         return '<User:{}>'.format(self.fullname)
 

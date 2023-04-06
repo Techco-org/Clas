@@ -59,7 +59,7 @@ def edit_personal_image():
             if not exist_avt:
                 avt_filename = str(current_user.id)+"-avatar"
                 avt_minetype = avt_img.mimetype
-                avt_img = Img(img=avt_img.read(), mimetype=avt_minetype, name=avt_filename)
+                avt_img = Img(img=avt_img.read(), mimetype=avt_minetype, name=avt_filename, user_id=current_user.id)
                 db.session.add(avt_img)
                 db.session.commit()
             else:
@@ -70,7 +70,7 @@ def edit_personal_image():
             if not exist_bg:
                 bg_filename = str(current_user.id)+"-background"
                 bg_minetype = bg_img.mimetype
-                bg_img = Img(img=bg_img.read(), mimetype=bg_minetype, name=bg_filename)
+                bg_img = Img(img=bg_img.read(), mimetype=bg_minetype, name=bg_filename, user_id=current_user.id)
                 db.session.add(bg_img)
                 db.session.commit()
             else:
@@ -192,4 +192,30 @@ def user(user_id):
 @views.route('/settings')
 @login_required
 def settings():
-    return render_template('settings.html')
+    return redirect(url_for('views.profile_setting'))
+
+@views.route('/settings/profile')
+@login_required
+def profile_setting():
+    return render_template('profile-setting.html')
+
+@views.route('/settings/account')
+@login_required
+def account_setting():
+    return render_template('account-setting.html')
+
+@views.route('/setting/account/account-type', methods=['POST', 'GET'])
+@login_required
+def account_type():
+    if request.method == 'POST':
+        account_type = request.form.get('account-type')
+        print(account_type)
+        current_user.account_type = account_type
+        print(current_user.account_type)
+        db.session.commit()
+    return redirect(url_for('views.account_setting'))
+
+@views.route('/settings/accessibility')
+@login_required
+def accessibility_setting():
+    return render_template('accessibility-setting.html')

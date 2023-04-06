@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block meta %}
-    <title>Clas | User</title>
+    <title>{{user.fullname}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css' ) }}">
 {% endblock %}
 {% block section %}
@@ -90,7 +90,6 @@
                     </div>
                 </div>
                 {% if user.grades %}
-                <hr class="w-100 my-0">
                     {% for grade in user.grades %}
                     <div class="row mt-2">
                         <div class="col-6">
@@ -105,7 +104,6 @@
                     </div>
                     {% endfor %}
                 {% endif %}
-                <hr class="w-100 mt-0">
             </div>
         </section>
 

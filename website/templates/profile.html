@@ -1,226 +1,244 @@
 {% extends 'main.html' %}
 {% block meta %}
-    <title>Clas | Profile</title>
+    <title>{{user.fullname}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css' ) }}">
 {% endblock %}
 {% block section %}
-    <div class="d-flex flex-column w-100">
-        <section class="personal-info rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
-            <div class="d-block banner w-100" style="height: 23em; width: 100%; position: relative;">
-                <button class="d-block box-shadow edit-media rounded-circle z-3"><i class="d-block bi bi-pencil-fill mx-auto text-primary align-self-center" data-bs-toggle="modal" data-bs-target="#mediaModal"></i></button>
-                <img src="{{ url_for('data.get_background_image', user_id=user.id ) }}" onerror="this.onerror=null; this.src='https://media.istockphoto.com/id/1133363749/photo/white-canvas-texture.jpg?b=1&s=170667a&w=0&k=20&c=JvXOFDmN3ACSBnWMQPJfwebOw4y5vTv48OAOvIXu3S4='" alt="" class="object-fit-cover rounded-top-3 z-1" style="width: 100%; height: 100%;">
+<div class="d-flex flex-column w-100">
+    <section class="personal-info rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <div class="d-block banner w-100" style="height: 23em; width: 100%; position: relative;">
+            <button class="d-block box-shadow edit-media rounded-circle z-3"><i class="d-block bi bi-pencil-fill mx-auto text-primary align-self-center" data-bs-toggle="modal" data-bs-target="#mediaModal"></i></button>
+            <img src="{{ url_for('data.get_background_image', user_id=user.id ) }}" onerror="this.onerror=null; this.src='https://media.istockphoto.com/id/1133363749/photo/white-canvas-texture.jpg?b=1&s=170667a&w=0&k=20&c=JvXOFDmN3ACSBnWMQPJfwebOw4y5vTv48OAOvIXu3S4='" alt="" class="object-fit-cover rounded-top-3 z-1" style="width: 100%; height: 100%;">
+        </div>
+        <div class="d-flex flex-column bg-white rounded-bottom-3 mx-lg-5 mx-3 mx-sm-3 py-3" style="position: relative;">
+            <div class="d-flex rounded-circle justify-content-center avatar box-shadow">
+                <img src="{{ url_for('data.get_avatar_image', user_id=user.id ) }}" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'" class="align-self-center avatar-image rounded-circle">
             </div>
-            <div class="d-flex flex-column bg-white rounded-bottom-3 mx-lg-5 mx-3 mx-sm-3 py-3" style="position: relative;">
-                <div class="d-flex rounded-circle justify-content-center avatar box-shadow">
-                    <img src="{{ url_for('data.get_avatar_image', user_id=user.id ) }}" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'" class="align-self-center avatar-image rounded-circle">
-                </div>
-                <div class="w-100 info">
-                    <div class="name"><p class="space-none">{{ user.fullname }}</p></div>
-                    {% if user.bio %}
-                    <div class="bio"><p class="space-none">{{ user.bio }}</p></div>
-                    {% endif %}
-                    {% if user.city or user.country %}
-                    <div class="city-country"><p class="space-none">
-                        {% if user.city %}
-                        {{ user.city }} city,
-                        {% endif %}
-                        {% if user.country %}
-                        {{ user.country }}
-                        {% endif %}
-                        </p>
-                    </div>
-                    {% endif %}
-                    <div class="email"><a class="space-none text-primary" href="mailto:{{ user.email }}">{{ user.email }}</a></div>
-                    {% if user.url %}
-                    <div class="website"><a class="space-none text-primary" href="{{ user.url }}">{{ user.url }}</a></div>
-                    {% endif %}
-                </div>
-            </div>
-        </section>
-        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
-        box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#personalModal">
-            <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit Profile
-        </button>
-
-        <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
-            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
-                <div class="section-label w-100">
-                    <p class="space-none"><i class="bi bi-info-circle-fill"></i> Basic info</p>
-                    <hr class="w-100 mt-0">
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
-                        {% if user.home_address or user.city or user.country %}
-                            <p class="space-none display-fs"><span class="fw-semibold">Address:</span> 
-                            {% if user.home_address %}
-                            {{user.home_address}}
-                            {% endif %}
-                            {% if user.city %}
-                            · {{user.city}} city
-                            {% endif %}
-                            {% if user.country %}
-                            · {{user.country}}
-                            {% endif %}</p>
-                        {% endif %}
-                        {% if user.date_of_birth %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Date of birth:</span> {{user.date_of_birth.strftime('%B %d, %Y')}} </p>
-                        {% endif %}
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
-                        {% if user.current_grade %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Current grade:</span> {{user.current_grade}} </p>
-                        {% endif %}
-                        {% if user.highschool %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Highschool:</span> {{user.highschool}} </p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
-        box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#basic_infoModal">
-            <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit Basic info
-        </button>
-
-        <section class="grading position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
-            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
-                <div class="section-label w-100">
-                    <p class="space-none"><i class="bi bi-mortarboard-fill"></i> My grading</p>
-                    <hr class="w-100 mt-0">
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p class="space-none display-fs"><span class="fw-semibold">Subject</span></p>
-                    </div>
-                    <div class="col-4">
-                        <p class="space-none display-fs text-center"><span class="fw-semibold">Overall score</span></p>
-                    </div>
-                    <div class="col-1">
-                        <p class="space-none display-fs text-center"><span class="fw-semibold">Grade</span></p>
-                    </div>
-                    <div class="col-1">
-                    </div>
-                </div>
-                {% if user.grades %}
-                <hr class="w-100 my-0">
-                    {% for grade in user.grades %}
-                    <div class="row mt-2">
-                        <div class="col-6">
-                            <p class="space-none display-fs">{{grade.subject}}</span></p>
-                        </div>
-                        <div class="col-4">
-                            <p class="space-none display-fs text-center">{{grade.overall}}</p>
-                        </div>
-                        <div class="col-1">
-                            <p class="space-none display-fs text-center">{{grade.grade}}</p>
-                        </div>
-                        <div class="col-1"><a class="text-danger space-none delete-button" style="outline: none" href="{{ url_for('views.delete_grade',grade_id=grade.id) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
-                        </div>
-                    </div>
-                    {% endfor %}
+            <div class="w-100 info">
+                <div class="name"><p class="space-none">{{ user.fullname }}</p></div>
+                {% if user.bio %}
+                <div class="bio"><p class="space-none">{{ user.bio }}</p></div>
                 {% endif %}
+                {% if user.city or user.country %}
+                <div class="city-country"><p class="space-none">
+                    {% if user.city %}
+                    {{ user.city }} city,
+                    {% endif %}
+                    {% if user.country %}
+                    {{ user.country }}
+                    {% endif %}
+                    </p>
+                </div>
+                {% endif %}
+                <div class="email"><a class="space-none text-primary" href="mailto:{{ user.email }}">{{ user.email }}</a></div>
+                {% if user.url %}
+                <div class="website"><a class="space-none text-primary" href="{{ user.url }}">{{ user.url }}</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
+    box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#personalModal">
+        <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit profile
+    </button>
+
+    <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+            <div class="section-label w-100">
+                <p class="space-none"><i class="bi bi-info-circle-fill"></i> Basic info</p>
                 <hr class="w-100 mt-0">
             </div>
-        </section>
-        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
-        box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#gradingModal">
-            <i class="bi bi-cloud-plus-fill fs-6 me-2"></i> Add grade
-        </button>
-
-        <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
-            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
-                <div class="section-label w-100">
-                    <p class="space-none"><i class="bi bi-award-fill"></i> Licenses and certifications</p>
-                    <hr class="w-100 mt-0">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
+                    {% if user.home_address or user.city or user.country %}
+                        <p class="space-none display-fs"><span class="fw-semibold">Address:</span> 
+                        {% if user.home_address %}
+                        {{user.home_address}}
+                        {% endif %}
+                        {% if user.city %}
+                        · {{user.city}} city
+                        {% endif %}
+                        {% if user.country %}
+                        · {{user.country}}
+                        {% endif %}</p>
+                    {% endif %}
+                    {% if user.date_of_birth %}
+                    <p class="space-none display-fs"><span class="fw-semibold">Date of birth:</span> {{user.date_of_birth.strftime('%B %d, %Y')}} </p>
+                    {% endif %}
                 </div>
-                {% for licer in user.licer %}
-                <div class="row mb-3">
-                    <div class="col-2 col-lg-1 col-sm-2">
-                        <img src="https://static.vecteezy.com/system/resources/previews/005/549/770/non_2x/real-estate-or-skyscraper-or-building-simple-square-logo-symbol-icon-graphic-design-illustration-vector.jpg" class="d-block object-fit-contain mx-auto" style="width: 4em;" alt="">
+                <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
+                    {% if user.current_grade %}
+                    <p class="space-none display-fs"><span class="fw-semibold">Current grade:</span> {{user.current_grade}} </p>
+                    {% endif %}
+                    {% if user.highschool %}
+                    <p class="space-none display-fs"><span class="fw-semibold">Highschool:</span> {{user.highschool}} </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
+    box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#basic_infoModal">
+        <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit basic info
+    </button>
+    
+    <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+            <div class="section-label w-100">
+                <p class="space-none"><i class="bi bi-file-person-fill"></i> About</p>
+                <hr class="w-100 mt-0">
+            </div>
+            {% if user.about %}
+                <div>
+                    <p class="space-none display-fs text-black" style="word-wrap: break-word; word-break: break-word; white-space: pre-wrap;">{{user.about}}</p>
+                </div>
+            {% endif %}
+            <div class="row">
+                
+            </div>
+        </div>
+    </section>
+    <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
+    box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#aboutModal">
+        <i class="bi bi-pencil-fill me-2 fs-6"></i> Edit about
+    </button>
+
+    <section class="grading position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+            <div class="section-label w-100">
+                <p class="space-none"><i class="bi bi-mortarboard-fill"></i> My grading</p>
+                <hr class="w-100 mt-0">
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="space-none display-fs"><span class="fw-semibold">Subject</span></p>
+                </div>
+                <div class="col-4">
+                    <p class="space-none display-fs text-center"><span class="fw-semibold">Overall score</span></p>
+                </div>
+                <div class="col-1">
+                    <p class="space-none display-fs text-center"><span class="fw-semibold">Grade</span></p>
+                </div>
+                <div class="col-1">
+                </div>
+            </div>
+            {% if user.grades %}
+                {% for grade in user.grades %}
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <p class="space-none display-fs">{{grade.subject}}</span></p>
                     </div>
-                    <div class="col-9 col-lg-10 col-sm-9 position-relative">
-                        <div class="licer-name"><p class="space-none fw-medium display-sm-fs">{{licer.licer_name}}</p></div>
-                        <div class="licer-organization"><p class="space-none display-fs">{{licer.organization}}</p></div>
-                        <div class="licer-issue-expire"><p class="space-none display-fs-sm text-black-50">Issued {{licer.issue_date.strftime('%B %Y')}}
-                        {% if licer.expiration_date %}
-                        · Expires {{licer.expiration_date.strftime('%B %Y')}}
-                        {% endif %}
-                        </p></div>
-                        {% if licer.credential_id %}
-                        <div class="licer-credential-id"><p class="space-none display-fs-sm text-black-50">Credential ID {{licer.credential_id}}</p></div>
-                        {% endif %}
-                        {% if licer.credential_url %}
-                        <div class="licer-credential-url my-1"><a href="{{licer.credential_url}}" class="btn btn-outline-secondary display-fs" tabindex="-1" role="button">Show credential<i class="bi bi-box-arrow-up-right ms-2"></i></a></div>
-                        {% endif %}
+                    <div class="col-4">
+                        <p class="space-none display-fs text-center">{{grade.overall}}</p>
                     </div>
-                    <div class="col-1 d-flex"><a class="text-danger space-none delete-button" style="outline: none" href="{{ url_for('views.delete_licer', licer_id=licer.id ) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
+                    <div class="col-1">
+                        <p class="space-none display-fs text-center">{{grade.grade}}</p>
+                    </div>
+                    <div class="col-1"><a class="text-danger space-none delete-button" style="outline: none" href="{{ url_for('views.delete_grade',grade_id=grade.id) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
                     </div>
                 </div>
                 {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+    <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
+    box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#gradingModal">
+        <i class="bi bi-cloud-plus-fill fs-6 me-2"></i> Add grade
+    </button>
+
+    <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
+            <div class="section-label w-100">
+                <p class="space-none"><i class="bi bi-award-fill"></i> Licenses and certifications</p>
+                <hr class="w-100 mt-0">
             </div>
-        </section>
-        <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
-        box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#licerModal">
-            <i class="bi bi-cloud-plus-fill fs-6 me-2"></i> Add license or certification
-        </button>
-        
-        <!-- Modal -->
-        <!-- Personal Details Modal -->
-        <div class="modal fade" id="personalModal" tabindex="-1" aria-labelledby="personalModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-4" id="personalModalLabel">Personal details</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ url_for('views.edit_profile' ) }}" method="POST">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="name" class="form-label fw-medium">Full name</label>
-                                <input id="name" name="name" type="text" class="form-control" value="{{ user.fullname }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="bio" class="form-label fw-medium">Your bio</label>
-                                <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="city" class="form-label fw-medium">City</label>
-                                <input id="city" name="city" type="text" class="form-control"
-                                {% if user.city %}
-                                value="{{ user.city }}"
-                                {% endif %}>
-                            </div>
-                            <div class="mb-3">
-                                <label for="country" class="form-label fw-medium">Country</label>
-                                <input id="country" name="country" type="text" class="form-control" 
-                                {% if user.country %}
-                                value="{{ user.country }}"
-                                {% endif %}>
-                            </div>
-                            <div class="mb-3">
-                                <label for="url" class="form-label fw-medium">Your website or personal URL</label>
-                                <input id="url" name="url" type="url" class="form-control" 
-                                {% if user.url %}
-                                value="{{ user.url }}"
-                                {% endif %}>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
+            {% for licer in user.licer %}
+            <div class="row mb-3">
+                <div class="col-2 col-lg-1 col-sm-2">
+                    <img src="https://static.vecteezy.com/system/resources/previews/005/549/770/non_2x/real-estate-or-skyscraper-or-building-simple-square-logo-symbol-icon-graphic-design-illustration-vector.jpg" class="d-block object-fit-contain mx-auto" style="width: 4em;" alt="">
                 </div>
+                <div class="col-9 col-lg-10 col-sm-9 position-relative">
+                    <div class="licer-name"><p class="space-none fw-medium display-sm-fs">{{licer.licer_name}}</p></div>
+                    <div class="licer-organization"><p class="space-none display-fs">{{licer.organization}}</p></div>
+                    <div class="licer-issue-expire"><p class="space-none display-fs-sm text-black-50">Issued {{licer.issue_date.strftime('%B %Y')}}
+                    {% if licer.expiration_date %}
+                    · Expires {{licer.expiration_date.strftime('%B %Y')}}
+                    {% endif %}
+                    </p></div>
+                    {% if licer.credential_id %}
+                    <div class="licer-credential-id"><p class="space-none display-fs-sm text-black-50">Credential ID {{licer.credential_id}}</p></div>
+                    {% endif %}
+                    {% if licer.credential_url %}
+                    <div class="licer-credential-url my-1"><a href="{{licer.credential_url}}" class="btn btn-outline-secondary display-fs" tabindex="-1" role="button">Show credential<i class="bi bi-box-arrow-up-right ms-2"></i></a></div>
+                    {% endif %}
+                </div>
+                <div class="col-1 d-flex"><a class="text-danger space-none delete-button" style="outline: none" href="{{ url_for('views.delete_licer', licer_id=licer.id ) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <button type="button" class="d-flex align-content-center justify-content-center w-100 rounded-3 py-3 mt-2 mb-3
+    box-shadow edit text-primary display-fs" data-bs-toggle="modal" data-bs-target="#licerModal">
+        <i class="bi bi-cloud-plus-fill fs-6 me-2"></i> Add license or certification
+    </button>
+    
+<!-- Modal -->
+    <!-- Personal Details Modal -->
+    <div class="modal fade" id="personalModal" tabindex="-1" aria-labelledby="personalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="personalModalLabel">Edit profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ url_for('views.edit_profile' ) }}" method="POST">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-medium">Full name</label>
+                            <input id="name" name="name" type="text" class="form-control" value="{{ user.fullname }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bio" class="form-label fw-medium">Your bio</label>
+                            <textarea id="bio" name="bio" class="form-control" aria-label="With textarea">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label fw-medium">City</label>
+                            <input id="city" name="city" type="text" class="form-control"
+                            {% if user.city %}
+                            value="{{ user.city }}"
+                            {% endif %}>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label fw-medium">Country</label>
+                            <input id="country" name="country" type="text" class="form-control" 
+                            {% if user.country %}
+                            value="{{ user.country }}"
+                            {% endif %}>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url" class="form-label fw-medium">Your website or personal URL</label>
+                            <input id="url" name="url" type="url" class="form-control" 
+                            {% if user.url %}
+                            value="{{ user.url }}"
+                            {% endif %}>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Basic Information Modal -->
     <div class="modal fade" id="basic_infoModal" tabindex="-1" aria-labelledby="basic_infoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="basic_infoModalLabel">Basic info</h1>
+                    <h1 class="modal-title fs-4" id="basic_infoModalLabel">Edit basic info</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ url_for('views.edit_basic_info' ) }}" method="POST">
@@ -263,12 +281,37 @@
         </div>
     </div>
 
-    <!-- Grading Modal -->
-    <div class="modal fade" id="gradingModal" tabindex="-1" aria-labelledby="gradingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="gradingModalLabel">My grading</h1>
+                    <h1 class="modal-title fs-4" id="aboutModalLabel">Edit about</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ url_for('views.edit_about' ) }}" method="POST" name="about_form">
+                    <div class="modal-body">
+                        <div class="">
+                            <p class="display-fs-sm space-none mb-1">You can write about your years of experience, industry, or skills. People also talk about their achievements or educations.</p>
+                            <textarea id="about" name="about" id="about" class="form-control" aria-label="With textarea" style="height: 15em" oninput="countCharacter()" spellcheck="false" maxlength="2000">{% if user.about %}{{user.about}}{% endif %}</textarea>
+                            <p class="display-fs-sm space-none text-end text-black-50"><span id="characters"></span>/2000</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grading Modal -->
+    <div class="modal fade" id="gradingModal" tabindex="-1" aria-labelledby="gradingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="gradingModalLabel">Add grade</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ url_for('views.add_grading' ) }}" method="POST">
@@ -300,10 +343,10 @@
     
     <!-- License Certificate Modal -->
     <div class="modal fade" id="licerModal" tabindex="-1" aria-labelledby="licerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="licerModalLabel">License or certification</h1>
+                    <h1 class="modal-title fs-4" id="licerModalLabel">Add license or certification</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ url_for('views.add_licer' ) }}" method="POST">
@@ -347,7 +390,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="mediaModalLabel">Profile and Background Image</h1>
+                    <h1 class="modal-title fs-4" id="mediaModalLabel">Upload profile images</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ url_for('views.edit_personal_image' ) }}" method="POST" enctype="multipart/form-data">
@@ -370,4 +413,5 @@
         </div>
     </div>
 </div>
+<script src="{{ url_for('static', filename='js/recruiter.js' ) }}"></script>
 {% endblock %}

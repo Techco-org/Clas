@@ -196,6 +196,8 @@ def user(user_id):
     user = User.query.filter_by(id=user_id).first()
     if not user:
         return 'No user with this id', 404
+    if user.account_type == 2:
+        return render_template('recruiter_user.html', user=user)
     return render_template('user.html', user=user) 
 
 #Setting group

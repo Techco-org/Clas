@@ -7,6 +7,7 @@
     <div class="d-flex flex-column w-100">
         <section class="personal-info rounded-3 bg-white box-shadow mb-2" style="height: fit-content; width: 100%;">
             <div class="d-block banner w-100" style="height: 23em; width: 100%; position: relative;">
+                <button class="d-block box-shadow edit-media rounded-circle z-3"><i class="d-block bi bi-pencil-fill mx-auto text-primary align-self-center" data-bs-toggle="modal" data-bs-target="#mediaModal"></i></button>
                 <img src="{{ url_for('data.get_background_image', user_id=user.id ) }}" onerror="this.onerror=null; this.src='https://media.istockphoto.com/id/1133363749/photo/white-canvas-texture.jpg?b=1&s=170667a&w=0&k=20&c=JvXOFDmN3ACSBnWMQPJfwebOw4y5vTv48OAOvIXu3S4='" alt="" class="object-fit-cover rounded-top-3 z-1" style="width: 100%; height: 100%;">
             </div>
             <div class="d-flex flex-column bg-white rounded-bottom-3 mx-lg-5 mx-3 mx-sm-3 py-3" style="position: relative;">
@@ -21,7 +22,7 @@
                     {% if user.city or user.country %}
                     <div class="city-country"><p class="space-none">
                         {% if user.city %}
-                        {{ user.city }} city, 
+                        {{ user.city }} city,
                         {% endif %}
                         {% if user.country %}
                         {{ user.country }}
@@ -36,41 +37,7 @@
                 </div>
             </div>
         </section>
-        <section class="basic-info position-relative rounded-3 bg-white box-shadow mb-2" style="height: fit-content; width: 100%;">
-            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
-                <div class="section-label w-100">
-                    <p class="space-none"><i class="bi bi-info-circle-fill"></i> Basic Info</p>
-                    <hr class="w-100 mt-0">
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
-                        {% if user.home_address or user.city or user.country %}
-                            <p class="space-none display-fs"><span class="fw-semibold">Address:</span> 
-                            {% if user.home_address %}
-                            {{user.home_address}}
-                            {% endif %}
-                            {% if user.city %}
-                            · {{user.city}} city
-                            {% endif %}
-                            {% if user.country %}
-                            · {{user.country}}
-                            {% endif %}</p>
-                        {% endif %}
-                        {% if user.date_of_birth %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Date of Birth:</span> {{user.date_of_birth.strftime('%B %d, %Y')}} </p>
-                        {% endif %}
-                    </div>
-                    <div class="col-12 col-lg-6 col-md-12 col-sm-12 pb-2">
-                        {% if user.current_grade %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Current grade:</span> {{user.current_grade}} </p>
-                        {% endif %}
-                        {% if user.highschool %}
-                        <p class="space-none display-fs"><span class="fw-semibold">Highschool:</span> {{user.highschool}} </p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <section class="basic-info position-relative rounded-3 bg-white box-shadow mb-2" style="height: fit-content; width: 100%;">
             <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
                 <div class="section-label w-100">
@@ -84,42 +51,8 @@
                 {% endif %}
             </div>
         </section>
-        <section class="grading position-relative rounded-3 bg-white box-shadow mb-2" style="height: fit-content; width: 100%;">
-            <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
-                <div class="section-label w-100">
-                    <p class="space-none"><i class="bi bi-mortarboard-fill"></i> My Grading</p>
-                    <hr class="w-100 mt-0">
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p class="space-none display-fs"><span class="fw-semibold">Subject</span></p>
-                    </div>
-                    <div class="col-4">
-                        <p class="space-none display-fs text-center"><span class="fw-semibold">Overall score</span></p>
-                    </div>
-                    <div class="col-2">
-                        <p class="space-none display-fs text-center"><span class="fw-semibold">Grade</span></p>
-                    </div>
-                </div>
-                {% if user.grades %}
-                    {% for grade in user.grades %}
-                    <div class="row mt-2">
-                        <div class="col-6">
-                            <p class="space-none display-fs">{{grade.subject}}</span></p>
-                        </div>
-                        <div class="col-4">
-                            <p class="space-none display-fs text-center">{{grade.overall}}</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="space-none display-fs text-center">{{grade.grade}}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </section>
 
-        <section class="basic-info position-relative rounded-3 bg-white box-shadow" style="height: fit-content; width: 100%;">
+        <section class="basic-info position-relative rounded-3 bg-white box-shadow mb-2" style="height: fit-content; width: 100%;">
             <div class="d-flex flex-column mx-lg-5 mx-3 mx-sm-3 py-3">
                 <div class="section-label w-100">
                     <p class="space-none"><i class="bi bi-award-fill"></i> Licenses and certifications</p>
@@ -130,7 +63,7 @@
                     <div class="col-2 col-lg-1 col-sm-2">
                         <img src="https://static.vecteezy.com/system/resources/previews/005/549/770/non_2x/real-estate-or-skyscraper-or-building-simple-square-logo-symbol-icon-graphic-design-illustration-vector.jpg" class="d-block object-fit-contain mx-auto" style="width: 4em;" alt="">
                     </div>
-                    <div class="col-10 col-lg-11 col-sm-10 position-relative">
+                    <div class="col-9 col-lg-10 col-sm-9 position-relative">
                         <div class="licer-name"><p class="space-none fw-medium display-sm-fs">{{licer.licer_name}}</p></div>
                         <div class="licer-organization"><p class="space-none display-fs">{{licer.organization}}</p></div>
                         <div class="licer-issue-expire"><p class="space-none display-fs-sm text-black-50">Issued {{licer.issue_date.strftime('%B %Y')}}
@@ -145,9 +78,12 @@
                         <div class="licer-credential-url my-1"><a href="{{licer.credential_url}}" class="btn btn-outline-secondary display-fs" tabindex="-1" role="button">Show credential<i class="bi bi-box-arrow-up-right ms-2"></i></a></div>
                         {% endif %}
                     </div>
+                    <div class="col-1 d-flex"><a class="text-danger space-none delete-button" style="outline: none" href="{{ url_for('views.delete_licer', licer_id=licer.id ) }}"><i class="bi bi-trash-fill display-sm-fs text-center"></i></a>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
         </section>
+        
     </div>
 {% endblock %}

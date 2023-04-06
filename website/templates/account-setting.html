@@ -1,0 +1,47 @@
+{% extends 'settings.html' %}
+{% block title %}
+    <title>Account settings</title>
+    <style>
+        .account-setting::before{
+            border-radius: 1em;
+            margin-top: auto;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            left: -0.3em;
+            background-color: var(--main-purple);
+            width: 0.3em;
+            height: 80%;
+        }
+    </style>
+{% endblock %}
+{% block setting %}
+    <section class="w-100">
+        <p class="space-none text-headline fw-medium">Account type</p>
+        <hr class="w-100">
+        <p class="space-none display-md-fs mb-1">Your account is currently a 
+        {% if current_user.account_type == 1 %}
+            student
+        {% else %}
+            recruiter
+        {% endif %} account</p>
+        <form class="row" method="POST" action="{{ url_for('views.account_type' ) }}">
+            <div class="col-7 col-lg-4 col-sm-7">
+                <select class="form-select display-sm-fs" aria-label="Default select example" name="account-type">
+                    <option value="1" 
+                    {% if current_user.account_type == 1 %}
+                        selected
+                    {% endif %}>Student</option>
+                    <option value="2"
+                    {% if current_user.account_type == 2 %}
+                        selected
+                    {% endif %}>Recruiter</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary display-sm-fs" type="submit">Change</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

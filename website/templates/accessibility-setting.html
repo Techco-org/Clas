@@ -1,0 +1,21 @@
+{% extends 'settings.html' %}
+{% block title %}
+    <title>Accessibility</title>
+    <style>
+        .accessibility-setting::before{
+            border-radius: 1em;
+            margin-top: auto;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            left: -0.3em;
+            background-color: var(--main-purple);
+            width: 0.3em;
+            height: 80%;
+        }
+    </style>
+{% endblock %}
+{% block setting %}
+    
+{% endblock %}

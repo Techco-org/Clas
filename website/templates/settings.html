@@ -1,26 +1,26 @@
 {% extends 'main.html' %}
 {% block meta %}
-    <title>Clas | Settings</title>
+    {% block title %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css' ) }}">
 {% endblock %}
 {% block section %}
-    <div class="d-flex flex-column w-100">
+    <div class="d-flex flex-column justify-content-center w-100">
         <section>
             <div class="headline">
                 <p class="space-none text-headline">Settings</p>
             </div>
             <hr class="w-100">
             <div class="row">
-                <div class="col-10 col-lg-3 col-sm-10">
+                <div class="col-12 col-lg-3 col-sm-12">
                     <div>
-                        <ul class="list-unstyled">
-                            <li class="setting-item rounded-3"><a href="" class="display-sm-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-person-fill me-2"></i>Profile</li></a>
-                            <li class="setting-item rounded-3"><a href="" class="display-sm-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-gear-fill me-2"></i>Account</li></a>
-                            <li class="setting-item rounded-3"><a href="" class="display-sm-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-universal-access me-2"></i>Accessibility</li></a>
+                        <ul class="list-unstyled w-100">
+                            <li class="setting-item rounded-3 profile-setting position-relative"><a href="{{ url_for('views.profile_setting' ) }}" class="display-md-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-person-fill me-2"></i>Profile</li></a>
+                            <li class="setting-item rounded-3 account-setting position-relative"><a href="{{ url_for('views.account_setting' ) }}" class="display-md-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-gear-fill me-2"></i>Account</li></a>
+                            <li class="setting-item rounded-3 accessibility-setting position-relative"><a href="{{ url_for('views.accessibility_setting' ) }}" class="display-md-fs text-decoration-none text-black btn no-border w-100 text-start"><i class="bi bi-universal-access me-2"></i>Accessibility</li></a>
                         </ul>
                     </div>
                 </div>
-                <div class="col-9 position-relative">
+                <div class="col-12 col-lg-9 col-sm-12 position-relative">
                     {% block setting %}{% endblock %}
                 </div>
             </div>

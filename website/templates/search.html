@@ -7,7 +7,7 @@
     <div class="d-flex position-relative flex-column w-100">
         {% if not results %}
             <div class="d-flex position-relative justify-content-center w-100" style="height: 80vh;">
-                <img src="{{ url_for('static', filename='images/no-results.png' ) }}" alt="" class="rounded-3 object-fit-cover" style="height: 70%;">
+                <img src="{{ url_for('static', filename='images/no-results.png' ) }}" alt="" class="rounded-3 object-fit-cover w-100" style="height: 70%;">
             </div>
         {% else %}
         {% for user in results %}

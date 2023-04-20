@@ -19,8 +19,8 @@ def home():
 @login_required
 def profile():
     if current_user.account_type == 2:
-        return render_template('recruiter.html', user=current_user)
-    return render_template('profile.html', user=current_user)
+        return render_template('/main-view/recruiter.html', user=current_user)
+    return render_template('/main-view/profile.html', user=current_user)
 
 @views.route('/profile/edit/profile', methods=['GET', 'POST'])
 @login_required
@@ -142,7 +142,7 @@ def delete_licer(licer_id):
 @login_required
 def tasks():
     current_date = datetime.now().strftime("%B %d, %Y")
-    return render_template('tasks.html', current_date=current_date, user=current_user)
+    return render_template('/main-view/tasks.html', current_date=current_date, user=current_user)
 
 @views.route('/tasks/new', methods=['GET', 'POST'])
 @login_required
@@ -189,7 +189,7 @@ def search():
 def search_result(query):
     results = User.query.msearch(query).all()
     print(results)
-    return render_template('search.html', results=results)
+    return render_template('/main-view/search.html', results=results)
 
 @views.route('/user/<user_id>')
 def user(user_id):
@@ -197,8 +197,8 @@ def user(user_id):
     if not user:
         return 'No user with this id', 404
     if user.account_type == 2:
-        return render_template('recruiter_user.html', user=user)
-    return render_template('user.html', user=user) 
+        return render_template('/profile-view/recruiter_user.html', user=user)
+    return render_template('/profile-view/user.html', user=user) 
 
 #Setting group
 @views.route('/settings')
@@ -209,12 +209,12 @@ def settings():
 @views.route('/settings/profile')
 @login_required
 def profile_setting():
-    return render_template('profile-setting.html')
+    return render_template('/setting-view/profile-setting.html')
 
 @views.route('/settings/account')
 @login_required
 def account_setting():
-    return render_template('account-setting.html')
+    return render_template('/setting-view/account-setting.html')
 
 @views.route('/settings/account/account-type', methods=['POST', 'GET'])
 @login_required
@@ -237,4 +237,4 @@ def delete_account(user_id):
 @views.route('/settings/accessibility')
 @login_required
 def accessibility_setting():
-    return render_template('accessibility-setting.html')
+    return render_template('/setting-view/accessibility-setting.html')

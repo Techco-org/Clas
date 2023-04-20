@@ -23,12 +23,17 @@
         <p class="space-none display-sm-fs mb-1">Your account is currently a 
         {% if current_user.account_type == 1 %}
             student
-        {% else %}
+        {% elif current_user.account_type == 2 %}
             recruiter
+        {% else %}
+            admin
         {% endif %} account</p>
         <form class="row" method="POST" action="{{ url_for('views.account_type' ) }}">
             <div class="col-7 col-lg-4 col-sm-7">
-                <select class="form-select display-fs" aria-label="Default select example" name="account-type">
+                <select class="form-select display-fs" aria-label="Default select example" name="account-type" 
+                {% if current_user.account_type == 0 %}
+                    disabled
+                {% endif %}>
                     <option value="1" 
                     {% if current_user.account_type == 1 %}
                         selected
@@ -40,7 +45,13 @@
                 </select>
             </div>
             <div class="col-2">
-                <button class="btn btn-primary display-fs" type="submit">Change</button>
+                <button class="btn btn-primary display-fs"
+                {% if current_user.account_type == 0 %}
+                    type="button" 
+                    disabled="disabled"
+                {% else %}
+                    type="submit"
+                {% endif %}>Change</button>
             </div>
         </form>
     </section>

@@ -20,7 +20,8 @@ def create_app():
 
     from .views import views
     from .auth import auth
-    from .data import data
+    from .data import data 
+    from .admin import admin
 
     db.init_app(app)
     search.init_app(app)
@@ -34,6 +35,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(data, url_prefix='/data')
     app.register_blueprint(views, url_prefix='/home')
+    app.register_blueprint(admin, url_prefix='/admin' )
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

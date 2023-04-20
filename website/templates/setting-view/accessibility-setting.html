@@ -1,0 +1,32 @@
+{% extends 'settings.html' %}
+{% block title %}
+    <title>Accessibility</title>
+    <style>
+        .accessibility-setting::before{
+            border-radius: 1em;
+            margin-top: auto;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            left: -0.3em;
+            background-color: var(--main-purple);
+            width: 0.3em;
+            height: 70%;
+        }
+    </style>
+{% endblock %}
+{% block setting %}
+    {% if current_user.account_type == 0 %}
+    <section class="w-100 mb-5">
+        <p class="space-none text-headline fw-medium">Admin panel</p>
+        <hr class="w-100">
+        <p class="space-none display-sm-fs mb-1">Access your admin panel</p>
+        <form class="row" method="POST" action="{{ url_for('views.account_type' ) }}">
+            <div class="col-2">
+                <a href="" class="btn btn-primary display-fs" type="submit">Access</a>
+            </div>
+        </form>
+    </section>
+    {% endif %}
+{% endblock %}

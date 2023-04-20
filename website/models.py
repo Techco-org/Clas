@@ -34,7 +34,6 @@ class User(db.Model, UserMixin):
     #Account type
     account_type = db.Column(db.Integer, default=1)
 
-    #
     about = db.Column(db.String(2000))
 
     def __repr__(self):
